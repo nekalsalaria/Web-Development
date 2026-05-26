@@ -1,0 +1,245 @@
+<!DOCTYPE html> // declaration to specify the document type and version of HTML being used
+<html lang="en"> // language of the document is English
+<head> // contains meta-information about the document, such as title, character encoding, etc.
+    <title>HTML Lecture 1</title>
+</head>
+<body>
+    <!-- tag is used to create the structure of web pages. -->
+
+    <!-- ========================= -->
+    <!-- HEADING TAGS -->
+    <!-- ========================= -->
+
+    <h1>This is Heading 1</h1>
+    <h2>This is Heading 2</h2>
+    <h3>This is Heading 3</h3>
+    <h4>This is Heading 4</h4>
+    <h5>This is Heading 5</h5>
+    <h6>This is Heading 6</h6>
+
+    <hr> 
+    <!-- // horizontal line -->
+
+    <!-- ========================= -->
+    <!-- PARAGRAPH TAG -->
+    <!-- ========================= -->
+
+    <p>
+        My name is Nekal Singh.
+        I am learning HTML.
+    </p>
+
+    <!-- line break -->
+    <br>
+
+    <p>
+        HTML is used to create the structure of web pages.
+    </p>
+
+    <hr>
+
+    <!-- ========================= -->
+    <!-- TEXT FORMATTING TAGS -->
+    <!-- ========================= -->
+
+    <b>Bold Text</b>
+    <br>
+    <!-- bold vs strong ?
+    <b> is used for styling purposes only.
+    <strong> is used to indicate that the text is of strong importance. -->
+    <strong>Strong Text</strong> 
+    <br>
+
+    <i>Italic Text</i>
+    <br>
+
+    <em>Emphasized Text</em>
+    <!-- // used to indicate that the text is emphasized or stressed. -->
+    <br>
+
+    <u>Underline Text</u>
+    <br>
+
+    <mark>Highlighted Text</mark>
+    <br>
+
+    <small>Small Text</small>
+    <br>
+
+    <del>Deleted Text</del>
+    <br>
+
+    <hr>
+
+    <!-- ========================= -->
+    <!-- LISTS -->
+    <!-- ========================= -->
+
+    <h2>Unordered List</h2>
+
+    <ul>
+        <li>Apple</li>
+        <li>Mango</li>
+        <li>Banana</li>
+    </ul>
+
+    <h2>Ordered List</h2>
+
+    <ol>
+        <li>Wake Up</li>
+        <li>Go to Gym</li>
+        <li>Study</li>
+    </ol>
+
+    <hr>
+
+    <!-- ========================= -->
+    <!-- LINKS -->
+    <!-- ========================= -->
+
+    <a href="https://www.google.com">
+        Open Google
+    </a>
+
+    <br><br>
+
+    <a href="https://www.youtube.com" target="_blank">
+        Open YouTube in New Tab
+    </a>
+
+    <hr>
+
+    <!-- ========================= -->
+    <!-- IMAGES -->
+    <!-- ========================= -->
+
+    <img 
+        src="https://picsum.photos/300"
+        alt="Random Image"
+        width="300"
+        height="200"
+    >
+
+    <hr>
+
+    <!-- ========================= -->
+    <!-- TABLE -->
+    <!-- ========================= -->
+
+    <table border="4">
+
+        <tr>
+            <th>Name</th>
+            <th>Age</th>
+            <th>City</th>
+        </tr> // Table Header
+
+        <tr>
+            <td>Nekal</td>
+            <td>22</td>
+            <td>Jaipur</td>
+        </tr>
+
+        <tr>
+            <td>Rahul</td>
+            <td>21</td>
+            <td>Delhi</td>
+        </tr>
+
+    </table>
+
+    <hr>
+
+    <!-- ========================= -->
+    <!-- FORMS -->
+    <!-- ========================= -->
+
+    <h2>Registration Form</h2>
+
+    <form>
+
+        <label>Enter Name:</label>
+        <input type="text">
+
+        <br><br>
+
+        <label>Email:</label>
+        <input type="email">
+
+        <br><br>
+
+        <label>Password:</label>
+        <input type="password">
+
+        <br><br>
+
+        <label>Phone Number:</label>
+        <input type="number">
+
+        <br><br>
+
+        <label>Gender:</label>
+
+        <input type="radio" name="gender"> Male
+        <input type="radio" name="gender"> Female
+
+        <br><br>
+
+        <label>Skills:</label>
+
+        <input type="checkbox"> HTML
+        <input type="checkbox"> CSS
+        <input type="checkbox"> JavaScript
+
+        <br><br>
+
+        <label>Select City:</label>
+
+        <select>
+            <option>Jaipur</option>
+            <option>Delhi</option>
+            <option>Mumbai</option>
+        </select>
+
+        <br><br>
+
+        <label>Message:</label>
+
+        <br>
+
+        <textarea rows="5" cols="30"></textarea>
+
+        <br><br>
+
+        <button>Submit</button>
+
+    </form>
+
+    <hr>
+
+    <!-- ========================= -->
+    <!-- SEMANTIC TAGS -->
+    <!-- ========================= -->
+
+    <header>
+        <h2>Website Header</h2>
+    </header>
+
+    <nav>
+        Home | About | Contact
+    </nav>
+
+    <section>
+        <h3>About Section</h3>
+
+        <p>
+            This is a section tag example.
+        </p>
+    </section>
+
+    <footer>
+        Copyright 2026
+    </footer>
+
+</body>
+</html>
