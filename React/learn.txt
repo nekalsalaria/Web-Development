@@ -1,0 +1,1408 @@
+================================================================================
+                        REACT - COMPLETE LEARNING GUIDE
+                     From Beginner to Advanced (Start to End)
+================================================================================
+
+
+================================================================================
+CHAPTER 1: INTRODUCTION TO REACT
+================================================================================
+
+TOPIC 1.1 — What is React?
+------------------------------------------------------------
+THEORY:
+  React is a JavaScript library (not a framework) developed by Facebook (Meta)
+  in 2013. It is used to build User Interfaces (UI), especially Single Page
+  Applications (SPA). React uses a component-based architecture meaning the UI
+  is broken into small reusable pieces called "components".
+
+  Key Features:
+  - Component-Based: Build encapsulated components that manage their own state.
+  - Declarative: Describe what the UI should look like; React handles the DOM.
+  - Virtual DOM: React uses a virtual copy of the DOM for faster updates.
+  - Unidirectional Data Flow: Data flows from parent to child.
+  - Open Source & Large Community.
+
+EXAMPLE:
+  // A simple React-like concept in plain JS (before learning JSX)
+  // React renders UI based on data (state)
+  const name = "Rahul";
+  const message = `Hello, ${name}!`;  // Output: Hello, Rahul!
+
+Real Life Example:
+  Tell students: React is like a LEGO set. Each LEGO piece = one component.
+  You combine pieces to build a full page/app.
+
+
+================================================================================
+TOPIC 1.2 — Setting Up React (Create React App)
+------------------------------------------------------------
+THEORY:
+  To start a React project, we use "Create React App" (CRA) — a tool that
+  sets up everything automatically (Webpack, Babel, etc.).
+
+  Prerequisites:
+  - Node.js installed (https://nodejs.org)
+  - npm (comes with Node.js)
+
+  Commands to create and run a React app:
+
+EXAMPLE:
+  Step 1: Install Create React App globally (one time only)
+  > npx create-react-app my-app
+
+  Step 2: Move into the project folder
+  > cd my-app
+
+  Step 3: Start the development server
+  > npm start
+
+  Your app will open at: http://localhost:3000
+
+  Folder Structure:
+  my-app/
+  ├── public/
+  │   └── index.html       ← The single HTML file
+  ├── src/
+  │   ├── App.js           ← Main component
+  │   ├── App.css          ← Styles
+  │   └── index.js         ← Entry point
+  ├── package.json         ← Dependencies list
+  └── node_modules/        ← All installed packages
+
+================================================================================
+TOPIC 1.3 — What is JSX?
+------------------------------------------------------------
+THEORY:
+  JSX stands for JavaScript XML. It allows us to write HTML-like code inside
+  JavaScript. JSX is NOT HTML — it gets converted to JavaScript by Babel.
+
+  Rules of JSX:
+  1. Every JSX element must have ONE parent element (wrap in <div> or <>...</>)
+  2. Use className instead of class
+  3. Use htmlFor instead of for
+  4. Self-closing tags must close: <img /> not <img>
+  5. JavaScript expressions go inside { }
+
+EXAMPLE:
+  // Valid JSX
+  function Greeting() {
+    const name = "Priya";
+    return (
+      <div>
+        <h1>Hello, {name}!</h1>
+        <p>Welcome to React.</p>
+      </div>
+    );
+  }
+
+  // JSX converts to this behind the scenes:
+  React.createElement("div", null,
+    React.createElement("h1", null, "Hello, Priya!"),
+    React.createElement("p", null, "Welcome to React.")
+  );
+
+OUTPUT:
+  Hello, Priya!
+  Welcome to React.
+
+WRONG EXAMPLE (Common Mistakes):
+  // ❌ Two root elements — ERROR
+  return (
+    <h1>Hello</h1>
+    <p>World</p>
+  );
+
+  // ✅ Correct — wrap in Fragment
+  return (
+    <>
+      <h1>Hello</h1>
+      <p>World</p>
+    </>
+  );
+
+
+================================================================================
+CHAPTER 2: COMPONENTS
+================================================================================
+
+TOPIC 2.1 — Functional Components
+------------------------------------------------------------
+THEORY:
+  A component is a JavaScript function that returns JSX. It is the building
+  block of every React app. Functional components are the modern and preferred
+  way to write React components.
+
+  Rules:
+  - Component name MUST start with Capital Letter
+  - Must return JSX (or null)
+  - Can be used like HTML tags: <MyComponent />
+
+EXAMPLE:
+  // Defining a functional component
+  function Welcome() {
+    return <h2>Welcome to my React App!</h2>;
+  }
+
+  // Arrow function style (also valid)
+  const Goodbye = () => {
+    return <h2>Goodbye! See you soon.</h2>;
+  };
+
+  // Using components inside App.js
+  function App() {
+    return (
+      <div>
+        <Welcome />
+        <Goodbye />
+      </div>
+    );
+  }
+
+  export default App;
+
+OUTPUT:
+  Welcome to my React App!
+  Goodbye! See you soon.
+
+
+================================================================================
+TOPIC 2.2 — Class Components (Legacy — Know for Interviews)
+------------------------------------------------------------
+THEORY:
+  Before React Hooks (v16.8), class components were the only way to use state
+  and lifecycle methods. They extend React.Component and use a render() method.
+  Today, functional components + hooks are preferred, but class components
+  still appear in older codebases and interview questions.
+
+EXAMPLE:
+  import React, { Component } from 'react';
+
+  class Hello extends Component {
+    render() {
+      return <h1>Hello from Class Component!</h1>;
+    }
+  }
+
+  export default Hello;
+
+
+================================================================================
+TOPIC 2.3 — Props (Properties)
+------------------------------------------------------------
+THEORY:
+  Props are inputs to a component — like function arguments. They allow you
+  to pass data from a PARENT component to a CHILD component. Props are
+  READ-ONLY (a child cannot modify props from parent).
+
+  Think of props like: a parent gives a child a lunch box (data).
+  The child can use it but cannot change what's inside.
+
+EXAMPLE:
+  // Child Component
+  function StudentCard(props) {
+    return (
+      <div>
+        <h3>Name: {props.name}</h3>
+        <p>Age: {props.age}</p>
+        <p>City: {props.city}</p>
+      </div>
+    );
+  }
+
+  // Parent Component passing props
+  function App() {
+    return (
+      <div>
+        <StudentCard name="Arjun" age={20} city="Jaipur" />
+        <StudentCard name="Sneha" age={22} city="Delhi" />
+      </div>
+    );
+  }
+
+OUTPUT:
+  Name: Arjun | Age: 20 | City: Jaipur
+  Name: Sneha | Age: 22 | City: Delhi
+
+DESTRUCTURING PROPS (cleaner way):
+  function StudentCard({ name, age, city }) {
+    return (
+      <div>
+        <h3>Name: {name}</h3>
+        <p>Age: {age} | City: {city}</p>
+      </div>
+    );
+  }
+
+DEFAULT PROPS:
+  StudentCard.defaultProps = {
+    city: "Unknown"
+  };
+
+
+================================================================================
+CHAPTER 3: STATE & HOOKS
+================================================================================
+
+TOPIC 3.1 — useState Hook
+------------------------------------------------------------
+THEORY:
+  State is data that can CHANGE over time and causes the component to re-render
+  when updated. The useState hook lets functional components have state.
+
+  Syntax:
+    const [value, setValue] = useState(initialValue);
+    - value      → current state
+    - setValue   → function to update state
+    - initialValue → starting value (number, string, array, object, etc.)
+
+  Rules of Hooks:
+  1. Only call hooks at the TOP LEVEL (not inside loops/conditions/functions)
+  2. Only call hooks inside React FUNCTIONAL COMPONENTS
+
+EXAMPLE 1 — Counter:
+  import { useState } from 'react';
+
+  function Counter() {
+    const [count, setCount] = useState(0);
+
+    return (
+      <div>
+        <h2>Count: {count}</h2>
+        <button onClick={() => setCount(count + 1)}>Increase</button>
+        <button onClick={() => setCount(count - 1)}>Decrease</button>
+        <button onClick={() => setCount(0)}>Reset</button>
+      </div>
+    );
+  }
+
+EXAMPLE 2 — Toggle Text:
+  function ToggleMessage() {
+    const [isVisible, setIsVisible] = useState(true);
+
+    return (
+      <div>
+        <button onClick={() => setIsVisible(!isVisible)}>Toggle</button>
+        {isVisible && <p>Hello! I am visible now.</p>}
+      </div>
+    );
+  }
+
+EXAMPLE 3 — Input Field:
+  function NameInput() {
+    const [name, setName] = useState("");
+
+    return (
+      <div>
+        <input
+          type="text"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+          placeholder="Enter your name"
+        />
+        <p>Hello, {name}!</p>
+      </div>
+    );
+  }
+
+NOTE FOR TEACHER:
+  Emphasize: Never do this → count = count + 1 (direct mutation)
+  Always use setter: setCount(count + 1)
+
+
+================================================================================
+TOPIC 3.2 — useEffect Hook
+------------------------------------------------------------
+THEORY:
+  useEffect is used to handle SIDE EFFECTS in React — things that happen
+  outside of rendering like: API calls, timers, subscriptions, DOM manipulation.
+
+  Syntax:
+    useEffect(() => {
+      // side effect code
+      return () => { /* cleanup (optional) */ };
+    }, [dependencies]);
+
+  Dependency Array:
+  - []           → runs ONCE after first render (like componentDidMount)
+  - [value]      → runs when 'value' changes
+  - no array     → runs after EVERY render
+
+EXAMPLE 1 — Runs Once (API Simulation):
+  import { useState, useEffect } from 'react';
+
+  function UserList() {
+    const [users, setUsers] = useState([]);
+
+    useEffect(() => {
+      // Simulating API fetch
+      const fakeUsers = ["Arjun", "Priya", "Rahul"];
+      setUsers(fakeUsers);
+    }, []); // empty array = run once
+
+    return (
+      <ul>
+        {users.map((user, index) => <li key={index}>{user}</li>)}
+      </ul>
+    );
+  }
+
+EXAMPLE 2 — Runs on State Change:
+  function Timer() {
+    const [seconds, setSeconds] = useState(0);
+
+    useEffect(() => {
+      const interval = setInterval(() => {
+        setSeconds(prev => prev + 1);
+      }, 1000);
+
+      return () => clearInterval(interval); // Cleanup on unmount
+    }, []);
+
+    return <h2>Time: {seconds} seconds</h2>;
+  }
+
+EXAMPLE 3 — Fetch Real API:
+  function PostList() {
+    const [posts, setPosts] = useState([]);
+
+    useEffect(() => {
+      fetch("https://jsonplaceholder.typicode.com/posts?_limit=5")
+        .then(res => res.json())
+        .then(data => setPosts(data));
+    }, []);
+
+    return (
+      <ul>
+        {posts.map(post => <li key={post.id}>{post.title}</li>)}
+      </ul>
+    );
+  }
+
+
+================================================================================
+TOPIC 3.3 — useRef Hook
+------------------------------------------------------------
+THEORY:
+  useRef returns a mutable object { current: value } that persists across
+  renders WITHOUT causing a re-render. Use cases:
+  1. Access DOM elements directly
+  2. Store previous values
+  3. Timer IDs
+
+EXAMPLE:
+  import { useRef } from 'react';
+
+  function FocusInput() {
+    const inputRef = useRef(null);
+
+    const handleClick = () => {
+      inputRef.current.focus(); // Directly access DOM element
+    };
+
+    return (
+      <div>
+        <input ref={inputRef} type="text" placeholder="Click button to focus me" />
+        <button onClick={handleClick}>Focus Input</button>
+      </div>
+    );
+  }
+
+
+================================================================================
+TOPIC 3.4 — useContext Hook
+------------------------------------------------------------
+THEORY:
+  Context provides a way to pass data through the component tree WITHOUT
+  passing props manually at every level (avoids "prop drilling").
+
+  Steps:
+  1. Create Context with React.createContext()
+  2. Wrap components with Provider and pass value
+  3. Use useContext() in any child to read the value
+
+EXAMPLE:
+  import { createContext, useContext } from 'react';
+
+  // Step 1: Create context
+  const ThemeContext = createContext("light");
+
+  // Step 2: Provide value
+  function App() {
+    return (
+      <ThemeContext.Provider value="dark">
+        <Toolbar />
+      </ThemeContext.Provider>
+    );
+  }
+
+  // Step 3: Consume context anywhere in tree
+  function Toolbar() {
+    return <ThemedButton />;
+  }
+
+  function ThemedButton() {
+    const theme = useContext(ThemeContext);
+    return <button>Current Theme: {theme}</button>;
+  }
+
+OUTPUT:
+  Current Theme: dark
+
+
+================================================================================
+TOPIC 3.5 — useReducer Hook
+------------------------------------------------------------
+THEORY:
+  useReducer is an alternative to useState for complex state logic. It is
+  similar to how Redux works. Good for when next state depends on previous
+  state or when multiple sub-values are involved.
+
+  Syntax:
+    const [state, dispatch] = useReducer(reducerFunction, initialState);
+
+  Reducer function:
+    function reducer(state, action) {
+      switch(action.type) {
+        case 'INCREMENT': return { count: state.count + 1 };
+        default: return state;
+      }
+    }
+
+EXAMPLE:
+  import { useReducer } from 'react';
+
+  const initialState = { count: 0 };
+
+  function reducer(state, action) {
+    switch (action.type) {
+      case 'INCREMENT': return { count: state.count + 1 };
+      case 'DECREMENT': return { count: state.count - 1 };
+      case 'RESET':     return { count: 0 };
+      default:          return state;
+    }
+  }
+
+  function Counter() {
+    const [state, dispatch] = useReducer(reducer, initialState);
+
+    return (
+      <div>
+        <h2>Count: {state.count}</h2>
+        <button onClick={() => dispatch({ type: 'INCREMENT' })}>+</button>
+        <button onClick={() => dispatch({ type: 'DECREMENT' })}>-</button>
+        <button onClick={() => dispatch({ type: 'RESET' })}>Reset</button>
+      </div>
+    );
+  }
+
+
+================================================================================
+TOPIC 3.6 — useMemo & useCallback Hooks
+------------------------------------------------------------
+THEORY:
+  useMemo: Memoizes (caches) a COMPUTED VALUE — avoids expensive recalculations
+           on every render.
+  useCallback: Memoizes a FUNCTION — avoids recreating functions on every render.
+
+  Both improve PERFORMANCE by avoiding unnecessary work.
+
+EXAMPLE — useMemo:
+  import { useState, useMemo } from 'react';
+
+  function ExpensiveCalc({ numbers }) {
+    const total = useMemo(() => {
+      console.log("Calculating...");
+      return numbers.reduce((sum, n) => sum + n, 0);
+    }, [numbers]); // Only recalculate when numbers changes
+
+    return <p>Total: {total}</p>;
+  }
+
+EXAMPLE — useCallback:
+  import { useState, useCallback } from 'react';
+
+  function Parent() {
+    const [count, setCount] = useState(0);
+
+    const handleClick = useCallback(() => {
+      console.log("Button clicked");
+    }, []); // Function stays same between renders
+
+    return (
+      <div>
+        <Child onClick={handleClick} />
+        <button onClick={() => setCount(count + 1)}>Re-render Parent</button>
+      </div>
+    );
+  }
+
+  function Child({ onClick }) {
+    console.log("Child rendered");
+    return <button onClick={onClick}>Click Me</button>;
+  }
+
+
+================================================================================
+CHAPTER 4: EVENTS & FORMS
+================================================================================
+
+TOPIC 4.1 — Handling Events
+------------------------------------------------------------
+THEORY:
+  React events are named in camelCase (onClick, onChange, onSubmit, etc.)
+  Event handlers are passed as functions, not strings.
+
+EXAMPLE:
+  function EventDemo() {
+    const handleClick = () => {
+      alert("Button was clicked!");
+    };
+
+    const handleMouseOver = (e) => {
+      console.log("Mouse over:", e.target.tagName);
+    };
+
+    return (
+      <div>
+        <button onClick={handleClick}>Click Me</button>
+        <p onMouseOver={handleMouseOver}>Hover over me</p>
+      </div>
+    );
+  }
+
+COMMON EVENTS:
+  onClick      → button click
+  onChange     → input field change
+  onSubmit     → form submission
+  onKeyDown    → key pressed
+  onMouseOver  → mouse hover
+  onFocus      → element focused
+  onBlur       → element lost focus
+
+
+================================================================================
+TOPIC 4.2 — Forms in React
+------------------------------------------------------------
+THEORY:
+  React uses CONTROLLED COMPONENTS for forms — the form data is managed by
+  React state, not the DOM. The input value is always synced with state.
+
+EXAMPLE — Full Form:
+  import { useState } from 'react';
+
+  function RegistrationForm() {
+    const [formData, setFormData] = useState({
+      name: "",
+      email: "",
+      course: "React"
+    });
+
+    const handleChange = (e) => {
+      setFormData({ ...formData, [e.target.name]: e.target.value });
+    };
+
+    const handleSubmit = (e) => {
+      e.preventDefault(); // Prevent page reload
+      console.log("Form Data:", formData);
+      alert(`Registered: ${formData.name} (${formData.email})`);
+    };
+
+    return (
+      <form onSubmit={handleSubmit}>
+        <input
+          type="text"
+          name="name"
+          value={formData.name}
+          onChange={handleChange}
+          placeholder="Your Name"
+        />
+        <input
+          type="email"
+          name="email"
+          value={formData.email}
+          onChange={handleChange}
+          placeholder="Your Email"
+        />
+        <select name="course" value={formData.course} onChange={handleChange}>
+          <option value="React">React</option>
+          <option value="Vue">Vue</option>
+          <option value="Angular">Angular</option>
+        </select>
+        <button type="submit">Register</button>
+      </form>
+    );
+  }
+
+
+================================================================================
+CHAPTER 5: LISTS & CONDITIONAL RENDERING
+================================================================================
+
+TOPIC 5.1 — Rendering Lists
+------------------------------------------------------------
+THEORY:
+  Use JavaScript's .map() method to render arrays in JSX.
+  Each item MUST have a unique "key" prop for React to track changes efficiently.
+  Key should be unique and stable (prefer IDs over index).
+
+EXAMPLE:
+  function StudentList() {
+    const students = [
+      { id: 1, name: "Arjun", grade: "A" },
+      { id: 2, name: "Priya", grade: "B" },
+      { id: 3, name: "Rahul", grade: "A+" },
+    ];
+
+    return (
+      <ul>
+        {students.map(student => (
+          <li key={student.id}>
+            {student.name} — Grade: {student.grade}
+          </li>
+        ))}
+      </ul>
+    );
+  }
+
+OUTPUT:
+  • Arjun — Grade: A
+  • Priya — Grade: B
+  • Rahul — Grade: A+
+
+WARNING:
+  // ❌ Avoid using index as key if list can change order
+  {items.map((item, index) => <li key={index}>{item}</li>)}
+
+  // ✅ Use unique ID
+  {items.map(item => <li key={item.id}>{item.name}</li>)}
+
+
+================================================================================
+TOPIC 5.2 — Conditional Rendering
+------------------------------------------------------------
+THEORY:
+  Show/hide components or elements based on conditions.
+  Methods:
+  1. if/else statement
+  2. Ternary operator (condition ? true : false)
+  3. Short-circuit (&&) operator
+  4. Switch statement
+
+EXAMPLE:
+  function UserStatus({ isLoggedIn, isAdmin }) {
+    // Method 1: Ternary
+    return (
+      <div>
+        <p>{isLoggedIn ? "Welcome back!" : "Please log in."}</p>
+
+        {/* Method 2: Short circuit — only shows if isAdmin is true */}
+        {isAdmin && <p>🔑 Admin Panel Access</p>}
+
+        {/* Method 3: Nested ternary */}
+        <p>
+          {isLoggedIn
+            ? isAdmin
+              ? "You are an Admin"
+              : "You are a User"
+            : "Guest"}
+        </p>
+      </div>
+    );
+  }
+
+  // Usage:
+  <UserStatus isLoggedIn={true} isAdmin={false} />
+
+
+================================================================================
+CHAPTER 6: COMPONENT COMMUNICATION
+================================================================================
+
+TOPIC 6.1 — Lifting State Up
+------------------------------------------------------------
+THEORY:
+  When multiple components need the same state, move (lift) it up to their
+  closest common parent. The parent manages state and passes it down via props.
+
+EXAMPLE:
+  // Parent manages shared temperature state
+  function TemperatureApp() {
+    const [temp, setTemp] = useState(0);
+
+    return (
+      <div>
+        <CelsiusInput temp={temp} onTempChange={setTemp} />
+        <FahrenheitDisplay temp={temp} />
+      </div>
+    );
+  }
+
+  function CelsiusInput({ temp, onTempChange }) {
+    return (
+      <input
+        type="number"
+        value={temp}
+        onChange={(e) => onTempChange(Number(e.target.value))}
+        placeholder="Enter Celsius"
+      />
+    );
+  }
+
+  function FahrenheitDisplay({ temp }) {
+    const fahrenheit = (temp * 9/5) + 32;
+    return <p>{temp}°C = {fahrenheit}°F</p>;
+  }
+
+
+================================================================================
+TOPIC 6.2 — Children Props
+------------------------------------------------------------
+THEORY:
+  props.children lets you pass JSX content between component opening and
+  closing tags. Useful for creating wrapper/layout components.
+
+EXAMPLE:
+  function Card({ title, children }) {
+    return (
+      <div style={{ border: "1px solid #ccc", padding: "16px", margin: "8px" }}>
+        <h3>{title}</h3>
+        <div>{children}</div>
+      </div>
+    );
+  }
+
+  function App() {
+    return (
+      <div>
+        <Card title="Student Info">
+          <p>Name: Arjun</p>
+          <p>Roll No: 101</p>
+        </Card>
+        <Card title="Course">
+          <p>React JS</p>
+          <button>Enroll</button>
+        </Card>
+      </div>
+    );
+  }
+
+
+================================================================================
+CHAPTER 7: REACT ROUTER (Navigation)
+================================================================================
+
+TOPIC 7.1 — React Router DOM
+------------------------------------------------------------
+THEORY:
+  React Router allows navigation between different "pages" in a Single Page
+  Application without reloading the browser. Install it first.
+
+  Install: npm install react-router-dom
+
+  Key Components:
+  - BrowserRouter   → Wraps the whole app
+  - Routes          → Container for all Route definitions
+  - Route           → Defines a path and its component
+  - Link            → Navigation (like <a> tag but no page reload)
+  - NavLink         → Like Link but with active class support
+  - useNavigate     → Programmatic navigation
+  - useParams       → Read URL parameters
+
+EXAMPLE:
+  import { BrowserRouter, Routes, Route, Link, useParams } from 'react-router-dom';
+
+  function Home() { return <h1>🏠 Home Page</h1>; }
+  function About() { return <h1>📖 About Page</h1>; }
+  function Contact() { return <h1>📞 Contact Page</h1>; }
+
+  function StudentDetail() {
+    const { id } = useParams(); // Read :id from URL
+    return <h2>Student ID: {id}</h2>;
+  }
+
+  function App() {
+    return (
+      <BrowserRouter>
+        <nav>
+          <Link to="/">Home</Link> |{" "}
+          <Link to="/about">About</Link> |{" "}
+          <Link to="/contact">Contact</Link>
+        </nav>
+
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="/student/:id" element={<StudentDetail />} />
+          <Route path="*" element={<h1>404 - Page Not Found</h1>} />
+        </Routes>
+      </BrowserRouter>
+    );
+  }
+
+  // Visit /student/42 → shows "Student ID: 42"
+
+PROGRAMMATIC NAVIGATION:
+  import { useNavigate } from 'react-router-dom';
+
+  function LoginPage() {
+    const navigate = useNavigate();
+
+    const handleLogin = () => {
+      // After login success:
+      navigate("/dashboard");
+    };
+
+    return <button onClick={handleLogin}>Login</button>;
+  }
+
+
+================================================================================
+CHAPTER 8: STYLING IN REACT
+================================================================================
+
+TOPIC 8.1 — Inline Styles
+------------------------------------------------------------
+THEORY:
+  Styles are passed as JavaScript objects. Properties use camelCase.
+
+EXAMPLE:
+  function StyledBox() {
+    const boxStyle = {
+      backgroundColor: "#4CAF50",
+      color: "white",
+      padding: "20px",
+      borderRadius: "8px",
+      textAlign: "center"
+    };
+
+    return <div style={boxStyle}>I am a styled box!</div>;
+  }
+
+
+================================================================================
+TOPIC 8.2 — CSS Modules
+------------------------------------------------------------
+THEORY:
+  CSS Modules scope styles to a specific component (no class name conflicts).
+  File name format: ComponentName.module.css
+
+EXAMPLE:
+  /* Button.module.css */
+  .primaryBtn {
+    background-color: blue;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+
+  // Button.js
+  import styles from './Button.module.css';
+
+  function Button({ label }) {
+    return <button className={styles.primaryBtn}>{label}</button>;
+  }
+
+
+================================================================================
+TOPIC 8.3 — Conditional Class Names
+------------------------------------------------------------
+EXAMPLE:
+  function Alert({ type, message }) {
+    // type can be "success", "error", "warning"
+    return (
+      <div className={`alert alert-${type}`}>
+        {message}
+      </div>
+    );
+  }
+
+  // Usage:
+  <Alert type="success" message="Saved successfully!" />
+  <Alert type="error" message="Something went wrong!" />
+
+
+================================================================================
+CHAPTER 9: ADVANCED CONCEPTS
+================================================================================
+
+TOPIC 9.1 — Custom Hooks
+------------------------------------------------------------
+THEORY:
+  Custom hooks are JavaScript functions that start with "use" and can call
+  other hooks. They let you extract and reuse stateful logic across components.
+
+EXAMPLE — useFetch custom hook:
+  import { useState, useEffect } from 'react';
+
+  // Custom hook
+  function useFetch(url) {
+    const [data, setData] = useState(null);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
+
+    useEffect(() => {
+      setLoading(true);
+      fetch(url)
+        .then(res => res.json())
+        .then(data => {
+          setData(data);
+          setLoading(false);
+        })
+        .catch(err => {
+          setError(err.message);
+          setLoading(false);
+        });
+    }, [url]);
+
+    return { data, loading, error };
+  }
+
+  // Using the custom hook
+  function Posts() {
+    const { data, loading, error } = useFetch(
+      "https://jsonplaceholder.typicode.com/posts?_limit=3"
+    );
+
+    if (loading) return <p>Loading...</p>;
+    if (error) return <p>Error: {error}</p>;
+
+    return (
+      <ul>
+        {data.map(post => <li key={post.id}>{post.title}</li>)}
+      </ul>
+    );
+  }
+
+
+================================================================================
+TOPIC 9.2 — React.memo (Performance Optimization)
+------------------------------------------------------------
+THEORY:
+  React.memo is a Higher Order Component (HOC) that prevents a component from
+  re-rendering if its props haven't changed. Wraps functional components.
+
+EXAMPLE:
+  import { memo, useState } from 'react';
+
+  // This child won't re-render unless 'name' prop changes
+  const ChildComponent = memo(function Child({ name }) {
+    console.log("Child rendered!");
+    return <p>Name: {name}</p>;
+  });
+
+  function Parent() {
+    const [count, setCount] = useState(0);
+
+    return (
+      <div>
+        <ChildComponent name="Arjun" /> {/* Won't re-render on count change */}
+        <button onClick={() => setCount(count + 1)}>
+          Count: {count}
+        </button>
+      </div>
+    );
+  }
+
+
+================================================================================
+TOPIC 9.3 — Error Boundaries
+------------------------------------------------------------
+THEORY:
+  Error Boundaries catch JavaScript errors in child components and display a
+  fallback UI instead of crashing the whole app. Must be class components.
+
+EXAMPLE:
+  import { Component } from 'react';
+
+  class ErrorBoundary extends Component {
+    constructor(props) {
+      super(props);
+      this.state = { hasError: false };
+    }
+
+    static getDerivedStateFromError(error) {
+      return { hasError: true };
+    }
+
+    componentDidCatch(error, info) {
+      console.log("Error caught:", error, info);
+    }
+
+    render() {
+      if (this.state.hasError) {
+        return <h2>⚠️ Something went wrong. Please refresh.</h2>;
+      }
+      return this.props.children;
+    }
+  }
+
+  // Usage
+  function App() {
+    return (
+      <ErrorBoundary>
+        <MyComponent />
+      </ErrorBoundary>
+    );
+  }
+
+
+================================================================================
+TOPIC 9.4 — Lazy Loading & Suspense
+------------------------------------------------------------
+THEORY:
+  React.lazy() lets you load components only when they're needed (code splitting).
+  Suspense shows a fallback (like a loader) while the component loads.
+
+EXAMPLE:
+  import { lazy, Suspense } from 'react';
+
+  // Lazy load — only fetched when needed
+  const HeavyChart = lazy(() => import('./HeavyChart'));
+
+  function Dashboard() {
+    return (
+      <div>
+        <h1>Dashboard</h1>
+        <Suspense fallback={<p>Loading chart...</p>}>
+          <HeavyChart />
+        </Suspense>
+      </div>
+    );
+  }
+
+
+================================================================================
+CHAPTER 10: STATE MANAGEMENT
+================================================================================
+
+TOPIC 10.1 — Redux Toolkit (Introduction)
+------------------------------------------------------------
+THEORY:
+  Redux is a global state management library. Redux Toolkit is the modern,
+  simpler way to use Redux. Use it when:
+  - Multiple components need the same data
+  - State is complex and needs to be shared across many levels
+
+  Install: npm install @reduxjs/toolkit react-redux
+
+  Key Concepts:
+  - Store    : Central place holding all state
+  - Slice    : A piece of the store (like a feature's state + reducers)
+  - Action   : Describes what happened
+  - Reducer  : Pure function that changes state based on action
+  - dispatch : Sends an action to the store
+  - useSelector : Reads state from the store
+
+EXAMPLE:
+  // counterSlice.js
+  import { createSlice } from '@reduxjs/toolkit';
+
+  const counterSlice = createSlice({
+    name: 'counter',
+    initialState: { value: 0 },
+    reducers: {
+      increment: (state) => { state.value += 1; },
+      decrement: (state) => { state.value -= 1; },
+      reset:     (state) => { state.value = 0; },
+    }
+  });
+
+  export const { increment, decrement, reset } = counterSlice.actions;
+  export default counterSlice.reducer;
+
+  // store.js
+  import { configureStore } from '@reduxjs/toolkit';
+  import counterReducer from './counterSlice';
+
+  const store = configureStore({
+    reducer: { counter: counterReducer }
+  });
+
+  export default store;
+
+  // index.js — Wrap app with Provider
+  import { Provider } from 'react-redux';
+  import store from './store';
+
+  root.render(
+    <Provider store={store}>
+      <App />
+    </Provider>
+  );
+
+  // Counter.js — Use state and dispatch
+  import { useSelector, useDispatch } from 'react-redux';
+  import { increment, decrement, reset } from './counterSlice';
+
+  function Counter() {
+    const count = useSelector(state => state.counter.value);
+    const dispatch = useDispatch();
+
+    return (
+      <div>
+        <h2>Count: {count}</h2>
+        <button onClick={() => dispatch(increment())}>+</button>
+        <button onClick={() => dispatch(decrement())}>-</button>
+        <button onClick={() => dispatch(reset())}>Reset</button>
+      </div>
+    );
+  }
+
+
+================================================================================
+CHAPTER 11: WORKING WITH APIs
+================================================================================
+
+TOPIC 11.1 — Fetch API with React
+------------------------------------------------------------
+THEORY:
+  React does NOT have built-in data fetching. We use JavaScript's fetch() or
+  a library like Axios. Data is fetched inside useEffect.
+
+EXAMPLE — GET Request:
+  import { useState, useEffect } from 'react';
+
+  function TodoList() {
+    const [todos, setTodos] = useState([]);
+    const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+      fetch("https://jsonplaceholder.typicode.com/todos?_limit=5")
+        .then(res => res.json())
+        .then(data => {
+          setTodos(data);
+          setLoading(false);
+        });
+    }, []);
+
+    if (loading) return <p>Loading todos...</p>;
+
+    return (
+      <ul>
+        {todos.map(todo => (
+          <li key={todo.id} style={{ color: todo.completed ? "green" : "red" }}>
+            {todo.title} — {todo.completed ? "Done" : "Pending"}
+          </li>
+        ))}
+      </ul>
+    );
+  }
+
+
+EXAMPLE — POST Request (Submit Data):
+  function AddPost() {
+    const [title, setTitle] = useState("");
+
+    const handleSubmit = async (e) => {
+      e.preventDefault();
+      const response = await fetch("https://jsonplaceholder.typicode.com/posts", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ title, userId: 1 })
+      });
+      const data = await response.json();
+      console.log("Created:", data);
+      alert("Post created with ID: " + data.id);
+    };
+
+    return (
+      <form onSubmit={handleSubmit}>
+        <input value={title} onChange={e => setTitle(e.target.value)} />
+        <button type="submit">Add Post</button>
+      </form>
+    );
+  }
+
+
+================================================================================
+CHAPTER 12: MINI PROJECTS (Practice)
+================================================================================
+
+TOPIC 12.1 — Mini Project 1: Todo App
+------------------------------------------------------------
+  import { useState } from 'react';
+
+  function TodoApp() {
+    const [todos, setTodos] = useState([]);
+    const [input, setInput] = useState("");
+
+    const addTodo = () => {
+      if (input.trim() === "") return;
+      setTodos([...todos, { id: Date.now(), text: input, done: false }]);
+      setInput("");
+    };
+
+    const toggleTodo = (id) => {
+      setTodos(todos.map(t => t.id === id ? { ...t, done: !t.done } : t));
+    };
+
+    const deleteTodo = (id) => {
+      setTodos(todos.filter(t => t.id !== id));
+    };
+
+    return (
+      <div>
+        <h2>📝 Todo App</h2>
+        <input value={input} onChange={e => setInput(e.target.value)} />
+        <button onClick={addTodo}>Add</button>
+        <ul>
+          {todos.map(todo => (
+            <li key={todo.id}>
+              <span
+                onClick={() => toggleTodo(todo.id)}
+                style={{ textDecoration: todo.done ? "line-through" : "none" }}
+              >
+                {todo.text}
+              </span>
+              <button onClick={() => deleteTodo(todo.id)}>🗑</button>
+            </li>
+          ))}
+        </ul>
+      </div>
+    );
+  }
+
+
+================================================================================
+TOPIC 12.2 — Mini Project 2: Search Filter
+------------------------------------------------------------
+  import { useState } from 'react';
+
+  const ALL_STUDENTS = [
+    "Arjun Sharma", "Priya Gupta", "Rahul Verma",
+    "Sneha Singh", "Amit Kumar", "Divya Joshi"
+  ];
+
+  function SearchFilter() {
+    const [query, setQuery] = useState("");
+
+    const filtered = ALL_STUDENTS.filter(student =>
+      student.toLowerCase().includes(query.toLowerCase())
+    );
+
+    return (
+      <div>
+        <h2>🔍 Student Search</h2>
+        <input
+          value={query}
+          onChange={e => setQuery(e.target.value)}
+          placeholder="Search students..."
+        />
+        <ul>
+          {filtered.length > 0
+            ? filtered.map((name, i) => <li key={i}>{name}</li>)
+            : <li>No students found.</li>
+          }
+        </ul>
+      </div>
+    );
+  }
+
+
+================================================================================
+CHAPTER 13: BEST PRACTICES & TIPS
+================================================================================
+
+TOPIC 13.1 — React Best Practices
+------------------------------------------------------------
+
+  1. COMPONENT SIZE:
+     - Keep components small and focused (one responsibility)
+     - If a component is too long, split it
+
+  2. FOLDER STRUCTURE:
+     src/
+     ├── components/     ← Reusable UI components
+     ├── pages/          ← Page-level components
+     ├── hooks/          ← Custom hooks
+     ├── context/        ← Context files
+     ├── utils/          ← Helper functions
+     └── assets/         ← Images, fonts
+
+  3. NAMING CONVENTIONS:
+     - Components: PascalCase (StudentCard, NavBar)
+     - Variables/functions: camelCase (handleClick, userData)
+     - CSS classes: kebab-case (main-container, btn-primary)
+     - Constants: UPPER_SNAKE_CASE (MAX_SIZE, API_URL)
+
+  4. KEYS IN LISTS:
+     - Always use unique, stable keys (never index if list changes)
+
+  5. AVOID DIRECT STATE MUTATION:
+     // ❌ Wrong
+     state.items.push(newItem);
+
+     // ✅ Correct
+     setItems([...items, newItem]);
+
+  6. MEMOIZATION:
+     - Use React.memo, useMemo, useCallback for performance
+     - But don't over-optimize — measure first
+
+  7. PROP TYPES (for documentation/type checking):
+     import PropTypes from 'prop-types';
+     StudentCard.propTypes = {
+       name: PropTypes.string.isRequired,
+       age: PropTypes.number
+     };
+
+  8. ENVIRONMENT VARIABLES:
+     - Store API keys in .env files
+     - Prefix with REACT_APP_: REACT_APP_API_KEY=abc123
+     - Access: process.env.REACT_APP_API_KEY
+
+  9. ERROR HANDLING:
+     - Always handle loading and error states in API calls
+     - Use Error Boundaries for unexpected crashes
+
+
+================================================================================
+CHAPTER 14: QUICK REFERENCE CHEAT SHEET
+================================================================================
+
+  HOOK             USE FOR
+  ─────────────────────────────────────────────────
+  useState         Local state (value + setter)
+  useEffect        Side effects (API, timers, DOM)
+  useRef           DOM refs, mutable values
+  useContext       Read from Context
+  useReducer       Complex state logic
+  useMemo          Cache computed values
+  useCallback      Cache functions
+  Custom Hook      Reuse stateful logic
+
+  ─────────────────────────────────────────────────
+  LIFECYCLE (via useEffect)
+  ─────────────────────────────────────────────────
+  Mount   → useEffect(() => { ... }, [])
+  Update  → useEffect(() => { ... }, [dep])
+  Unmount → useEffect(() => { return () => cleanup(); }, [])
+
+  ─────────────────────────────────────────────────
+  COMMON JSX PATTERNS
+  ─────────────────────────────────────────────────
+  Conditional   → {condition && <Component />}
+  Ternary       → {flag ? <A /> : <B />}
+  List          → {arr.map(item => <Li key={item.id} />)}
+  Event         → onClick={() => handler()}
+  Style         → style={{ color: "red", fontSize: "16px" }}
+  Class         → className="my-class"
+  Ref           → ref={myRef}
+  Children      → {props.children}
+
+  ─────────────────────────────────────────────────
+  USEFUL npm PACKAGES
+  ─────────────────────────────────────────────────
+  react-router-dom  → Routing/navigation
+  @reduxjs/toolkit  → Global state (Redux)
+  axios             → HTTP requests
+  react-query       → Data fetching + caching
+  formik            → Form management
+  yup               → Form validation
+  react-icons       → Icon library
+  react-toastify    → Toast notifications
+  framer-motion     → Animations
