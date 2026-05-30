@@ -79,10 +79,8 @@ THEORY:
 
   Rules of JSX:
   1. Every JSX element must have ONE parent element (wrap in <div> or <>...</>)
-  2. Use className instead of class
-  3. Use htmlFor instead of for
-  4. Self-closing tags must close: <img /> not <img>
-  5. JavaScript expressions go inside { }
+  2. Self-closing tags must close: <img /> not <img>
+  3. JavaScript expressions go inside { }
 
 EXAMPLE:
   // Valid JSX
@@ -149,21 +147,6 @@ EXAMPLE:
     return <h2>Goodbye! See you soon.</h2>;
   };
 
-  // Using components inside App.js
-  function App() {
-    return (
-      <div>
-        <Welcome />
-        <Goodbye />
-      </div>
-    );
-  }
-
-  export default App;
-
-OUTPUT:
-  Welcome to my React App!
-  Goodbye! See you soon.
 
 
 ================================================================================
@@ -305,9 +288,6 @@ EXAMPLE 3 — Input Field:
     );
   }
 
-NOTE FOR TEACHER:
-  Emphasize: Never do this → count = count + 1 (direct mutation)
-  Always use setter: setCount(count + 1)
 
 
 ================================================================================
