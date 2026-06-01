@@ -837,79 +837,11 @@ PROGRAMMATIC NAVIGATION:
     return <button onClick={handleLogin}>Login</button>;
   }
 
-
 ================================================================================
-CHAPTER 8: STYLING IN REACT
-================================================================================
-
-TOPIC 8.1 — Inline Styles
-------------------------------------------------------------
-THEORY:
-  Styles are passed as JavaScript objects. Properties use camelCase.
-
-EXAMPLE:
-  function StyledBox() {
-    const boxStyle = {
-      backgroundColor: "#4CAF50",
-      color: "white",
-      padding: "20px",
-      borderRadius: "8px",
-      textAlign: "center"
-    };
-
-    return <div style={boxStyle}>I am a styled box!</div>;
-  }
-
-
-================================================================================
-TOPIC 8.2 — CSS Modules
-------------------------------------------------------------
-THEORY:
-  CSS Modules scope styles to a specific component (no class name conflicts).
-  File name format: ComponentName.module.css
-
-EXAMPLE:
-  /* Button.module.css */
-  .primaryBtn {
-    background-color: blue;
-    color: white;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-  }
-
-  // Button.js
-  import styles from './Button.module.css';
-
-  function Button({ label }) {
-    return <button className={styles.primaryBtn}>{label}</button>;
-  }
-
-
-================================================================================
-TOPIC 8.3 — Conditional Class Names
-------------------------------------------------------------
-EXAMPLE:
-  function Alert({ type, message }) {
-    // type can be "success", "error", "warning"
-    return (
-      <div className={`alert alert-${type}`}>
-        {message}
-      </div>
-    );
-  }
-
-  // Usage:
-  <Alert type="success" message="Saved successfully!" />
-  <Alert type="error" message="Something went wrong!" />
-
-
-================================================================================
-CHAPTER 9: ADVANCED CONCEPTS
+CHAPTER 8: ADVANCED CONCEPTS
 ================================================================================
 
-TOPIC 9.1 — Custom Hooks
+TOPIC 8.1 — Custom Hooks
 ------------------------------------------------------------
 THEORY:
   Custom hooks are JavaScript functions that start with "use" and can call
@@ -959,7 +891,7 @@ EXAMPLE — useFetch custom hook:
 
 
 ================================================================================
-TOPIC 9.2 — React.memo (Performance Optimization)
+TOPIC 8.2 — React.memo (Performance Optimization)
 ------------------------------------------------------------
 THEORY:
   React.memo is a Higher Order Component (HOC) that prevents a component from
@@ -989,49 +921,7 @@ EXAMPLE:
 
 
 ================================================================================
-TOPIC 9.3 — Error Boundaries
-------------------------------------------------------------
-THEORY:
-  Error Boundaries catch JavaScript errors in child components and display a
-  fallback UI instead of crashing the whole app. Must be class components.
-
-EXAMPLE:
-  import { Component } from 'react';
-
-  class ErrorBoundary extends Component {
-    constructor(props) {
-      super(props);
-      this.state = { hasError: false };
-    }
-
-    static getDerivedStateFromError(error) {
-      return { hasError: true };
-    }
-
-    componentDidCatch(error, info) {
-      console.log("Error caught:", error, info);
-    }
-
-    render() {
-      if (this.state.hasError) {
-        return <h2>⚠️ Something went wrong. Please refresh.</h2>;
-      }
-      return this.props.children;
-    }
-  }
-
-  // Usage
-  function App() {
-    return (
-      <ErrorBoundary>
-        <MyComponent />
-      </ErrorBoundary>
-    );
-  }
-
-
-================================================================================
-TOPIC 9.4 — Lazy Loading & Suspense
+TOPIC 8.3 — Lazy Loading & Suspense
 ------------------------------------------------------------
 THEORY:
   React.lazy() lets you load components only when they're needed (code splitting).
@@ -1056,10 +946,10 @@ EXAMPLE:
 
 
 ================================================================================
-CHAPTER 10: STATE MANAGEMENT
+CHAPTER 9: STATE MANAGEMENT
 ================================================================================
 
-TOPIC 10.1 — Redux Toolkit (Introduction)
+TOPIC 9.1 — Redux Toolkit (Introduction)
 ------------------------------------------------------------
 THEORY:
   Redux is a global state management library. Redux Toolkit is the modern,
@@ -1134,10 +1024,10 @@ EXAMPLE:
 
 
 ================================================================================
-CHAPTER 11: WORKING WITH APIs
+CHAPTER 10: WORKING WITH APIs
 ================================================================================
 
-TOPIC 11.1 — Fetch API with React
+TOPIC 10.1 — Fetch API with React
 ------------------------------------------------------------
 THEORY:
   React does NOT have built-in data fetching. We use JavaScript's fetch() or
@@ -1199,10 +1089,10 @@ EXAMPLE — POST Request (Submit Data):
 
 
 ================================================================================
-CHAPTER 12: MINI PROJECTS (Practice)
+CHAPTER 11: MINI PROJECTS (Practice)
 ================================================================================
 
-TOPIC 12.1 — Mini Project 1: Todo App
+TOPIC 11.1 — Mini Project 1: Todo App
 ------------------------------------------------------------
   import { useState } from 'react';
 
@@ -1248,7 +1138,7 @@ TOPIC 12.1 — Mini Project 1: Todo App
 
 
 ================================================================================
-TOPIC 12.2 — Mini Project 2: Search Filter
+TOPIC 11.2 — Mini Project 2: Search Filter
 ------------------------------------------------------------
   import { useState } from 'react';
 
@@ -1284,10 +1174,10 @@ TOPIC 12.2 — Mini Project 2: Search Filter
 
 
 ================================================================================
-CHAPTER 13: BEST PRACTICES & TIPS
+CHAPTER 12: BEST PRACTICES & TIPS
 ================================================================================
 
-TOPIC 13.1 — React Best Practices
+TOPIC 12.1 — React Best Practices
 ------------------------------------------------------------
 
   1. COMPONENT SIZE:
@@ -1341,7 +1231,7 @@ TOPIC 13.1 — React Best Practices
 
 
 ================================================================================
-CHAPTER 14: QUICK REFERENCE CHEAT SHEET
+CHAPTER 13: QUICK REFERENCE CHEAT SHEET
 ================================================================================
 
   HOOK             USE FOR
