@@ -227,6 +227,52 @@ DEFAULT PROPS:
 CHAPTER 3: STATE & HOOKS
 ================================================================================
 
+Till now we have learned how to display data in React using variables.
+
+Example:
+
+function App() {
+
+  let name = "Nekal";
+
+  return (
+    <h1>{name}</h1>
+  );
+}
+
+Output:
+
+Nekal
+
+Everything works fine.
+
+But now suppose we want to change the value.
+
+Example:
+
+let count = 0;
+
+count = count + 1;
+
+Question:
+
+Will React automatically update the UI?
+
+Answer:
+
+NO.
+
+Even though the value changes, React does not update the screen automatically.
+
+Why?
+
+Because React does not track normal variables.
+
+React only tracks State.
+
+This is where useState comes into the picture.
+
+
 TOPIC 3.1 — useState Hook
 ------------------------------------------------------------
 THEORY:
@@ -288,6 +334,343 @@ EXAMPLE 3 — Input Field:
     );
   }
 
+================================================================================
+MOST ASKED INTERVIEW QUESTIONS — useState
+================================================================================
+
+Q1. What is State in React?
+
+Answer:
+State is data that can change over time and causes the component to re-render
+when updated.
+
+---
+
+Q2. What is useState Hook?
+
+Answer:
+useState is a React Hook that allows Functional Components to create and manage
+State.
+
+Syntax:
+
+```jsx
+const [value, setValue] = useState(initialValue);
+```
+
+---
+
+Q3. Why do we use useState?
+
+Answer:
+We use useState to store dynamic data and update the UI whenever that data
+changes.
+
+Examples:
+• Counter
+• Login Status
+• Input Fields
+• Dark Mode
+
+---
+
+Q4. What happens when State changes?
+
+Answer:
+
+1. State updates
+2. React re-renders the component
+3. UI updates automatically
+
+---
+
+Q5. What is the difference between a normal variable and State?
+
+Answer:
+
+Normal Variable:
+• React does not track it
+• UI does not update automatically
+
+State:
+• React tracks it
+• UI updates automatically
+
+---
+
+Q6. What is the purpose of setState functions like setCount()?
+
+Answer:
+setCount() is used to update the state value.
+
+Example:
+
+```jsx
+setCount(count + 1);
+```
+
+---
+
+Q7. Can we directly update State?
+
+Answer:
+
+❌ Wrong
+
+```jsx
+count = count + 1;
+```
+
+✅ Correct
+
+```jsx
+setCount(count + 1);
+```
+
+State should always be updated using its setter function.
+
+---
+
+Q8. Can we use multiple useState Hooks in one component?
+
+Answer:
+
+Yes.
+
+Example:
+
+```jsx
+const [name, setName] = useState("");
+const [age, setAge] = useState("");
+const [city, setCity] = useState("");
+```
+
+---
+
+Q9. Can useState store Arrays and Objects?
+
+Answer:
+
+Yes.
+
+Examples:
+
+```jsx
+const [students, setStudents] = useState([]);
+```
+
+```jsx
+const [user, setUser] = useState({});
+```
+
+---
+
+Q10. What are the Rules of Hooks?
+
+Answer:
+
+1. Only call Hooks at the Top Level.
+2. Only call Hooks inside Functional Components.
+
+---
+
+Q11. What does useState return?
+
+Answer:
+
+useState returns an array containing:
+
+1. Current State Value
+2. State Update Function
+
+Example:
+
+```jsx
+const [count, setCount] = useState(0);
+```
+
+---
+
+Q12. What is the initial value in useState?
+
+Answer:
+
+The value passed inside useState() is called the Initial Value.
+
+Example:
+
+```jsx
+useState(0);
+```
+
+Here 0 is the initial value.
+
+---
+
+Q13. What is e.target.value?
+
+Answer:
+
+e
+→ Event Object
+
+target
+→ Input Element
+
+value
+→ Current Value of Input
+
+Example:
+
+```jsx
+onChange={(e) => setName(e.target.value)}
+```
+
+---
+
+Q14. Why do Hooks start with "use"?
+
+Answer:
+
+React uses the "use" prefix to identify Hooks.
+
+Examples:
+
+```jsx
+useState()
+useEffect()
+useRef()
+useContext()
+```
+
+---
+
+Q15. Can Hooks be used inside loops and conditions?
+
+Answer:
+
+No.
+
+❌ Wrong
+
+```jsx
+if(true){
+  useState(0);
+}
+```
+
+❌ Wrong
+
+```jsx
+for(let i=0;i<5;i++){
+  useState(0);
+}
+```
+
+================================================================================
+HOMEWORK
+================================================================================
+
+Write BOTH Logic and Code in your Notebook.
+
+1. Create a Counter App
+   Features:
+   • Increase
+   • Decrease
+   • Reset
+
+---
+
+2. Create a Counter App
+   Features:
+   • +5
+   • -5
+   • Double
+   • Reset
+
+---
+
+3. Create a Toggle Text App
+
+Requirements:
+• Show Text
+• Hide Text
+
+---
+
+4. Create a Toggle Image App
+
+Requirements:
+• Show Image
+• Hide Image
+
+---
+
+5. Create a Live Name Preview App
+
+Example:
+
+Input:
+Nekal
+
+Output:
+Hello Nekal
+
+---
+
+6. Create a Character Counter
+
+Example:
+
+Input:
+React
+
+Output:
+Total Characters: 5
+
+---
+
+7. Create Uppercase Converter
+
+Input:
+react
+
+Output:
+REACT
+
+---
+
+8. Create Lowercase Converter
+
+Input:
+REACT
+
+Output:
+react
+
+---
+
+9. Create Student Information Card
+
+Inputs:
+• Name
+• Age
+
+Output:
+
+Name: John
+Age: 20
+
+---
+
+10. Create User Profile Card
+
+Inputs:
+• Name
+• Age
+• City
+
+Display all information dynamically using State.
 
 
 ================================================================================
@@ -428,99 +811,6 @@ EXAMPLE:
 
 OUTPUT:
   Current Theme: dark
-
-
-================================================================================
-TOPIC 3.5 — useReducer Hook
-------------------------------------------------------------
-THEORY:
-  useReducer is an alternative to useState for complex state logic. It is
-  similar to how Redux works. Good for when next state depends on previous
-  state or when multiple sub-values are involved.
-
-  Syntax:
-    const [state, dispatch] = useReducer(reducerFunction, initialState);
-
-  Reducer function:
-    function reducer(state, action) {
-      switch(action.type) {
-        case 'INCREMENT': return { count: state.count + 1 };
-        default: return state;
-      }
-    }
-
-EXAMPLE:
-  import { useReducer } from 'react';
-
-  const initialState = { count: 0 };
-
-  function reducer(state, action) {
-    switch (action.type) {
-      case 'INCREMENT': return { count: state.count + 1 };
-      case 'DECREMENT': return { count: state.count - 1 };
-      case 'RESET':     return { count: 0 };
-      default:          return state;
-    }
-  }
-
-  function Counter() {
-    const [state, dispatch] = useReducer(reducer, initialState);
-
-    return (
-      <div>
-        <h2>Count: {state.count}</h2>
-        <button onClick={() => dispatch({ type: 'INCREMENT' })}>+</button>
-        <button onClick={() => dispatch({ type: 'DECREMENT' })}>-</button>
-        <button onClick={() => dispatch({ type: 'RESET' })}>Reset</button>
-      </div>
-    );
-  }
-
-
-================================================================================
-TOPIC 3.6 — useMemo & useCallback Hooks
-------------------------------------------------------------
-THEORY:
-  useMemo: Memoizes (caches) a COMPUTED VALUE — avoids expensive recalculations
-           on every render.
-  useCallback: Memoizes a FUNCTION — avoids recreating functions on every render.
-
-  Both improve PERFORMANCE by avoiding unnecessary work.
-
-EXAMPLE — useMemo:
-  import { useState, useMemo } from 'react';
-
-  function ExpensiveCalc({ numbers }) {
-    const total = useMemo(() => {
-      console.log("Calculating...");
-      return numbers.reduce((sum, n) => sum + n, 0);
-    }, [numbers]); // Only recalculate when numbers changes
-
-    return <p>Total: {total}</p>;
-  }
-
-EXAMPLE — useCallback:
-  import { useState, useCallback } from 'react';
-
-  function Parent() {
-    const [count, setCount] = useState(0);
-
-    const handleClick = useCallback(() => {
-      console.log("Button clicked");
-    }, []); // Function stays same between renders
-
-    return (
-      <div>
-        <Child onClick={handleClick} />
-        <button onClick={() => setCount(count + 1)}>Re-render Parent</button>
-      </div>
-    );
-  }
-
-  function Child({ onClick }) {
-    console.log("Child rendered");
-    return <button onClick={onClick}>Click Me</button>;
-  }
 
 
 ================================================================================
