@@ -675,7 +675,54 @@ Display all information dynamically using State.
 
 ================================================================================
 TOPIC 3.2 — useEffect Hook
-------------------------------------------------------------
+--------------------------------------------------------------------------------
+
+Till now we have learned how to display data and update UI using useState.
+But React components often need to do things that are outside of rendering UI.
+
+Examples:
+Fetch data from an API
+Start a timer
+Listen to user events
+Access Local Storage
+Manipulate the DOM
+Create subscriptions
+
+These are called Side Effects.
+To handle Side Effects in React, we use the useEffect Hook.
+
+- Real Life Example
+
+Imagine a classroom.
+
+Component Render
+
+Student enters the classroom.
+
+Side Effect
+Attendance gets marked
+Teacher gets notified
+Camera starts recording
+
+These actions are not part of showing the student.
+
+They happen because the student entered.
+
+Similarly:
+
+function App() {
+  return <h1>Hello Students</h1>;
+}
+
+Rendering UI is one thing.
+
+Calling an API, starting a timer, saving data etc. are side effects.
+
+For these tasks we use:
+
+useEffect()
+
+
 THEORY:
   useEffect is used to handle SIDE EFFECTS in React — things that happen
   outside of rendering like: API calls, timers, subscriptions, DOM manipulation.
@@ -742,6 +789,54 @@ EXAMPLE 3 — Fetch Real API:
     );
   }
 
+ -----------------
+  HOMEWORK
+ ----------------
+ 
+1. Create a component that prints "Component Mounted" in the console when it renders for the first time using useEffect.
+
+2. Create a counter application and log the updated count in the console whenever the count changes.
+
+3. Change the browser tab title to "React Learning" when the component loads using useEffect.
+
+4. Create a component that displays a user's name and prints "Welcome [Name]" when the component mounts.
+
+5. Create a counter with Increment and Decrement buttons and log the current count whenever it changes.
+
+6. Create an input field and display "You typed: [value]" in the console whenever the input value changes.
+
+7. Fetch users from https://jsonplaceholder.typicode.com/users using useEffect and display their names.
+
+8. Fetch 10 posts from https://jsonplaceholder.typicode.com/posts?_limit=10 and display their titles.
+
+9. Create a timer that increments every second using setInterval inside useEffect.
+
+10. Create a timer that automatically stops after 10 seconds.
+
+11. Create a component that starts an interval and clears it when the component unmounts using a cleanup function.
+
+12. Display the current window width and height, updating whenever the browser window is resized.
+
+13. Create an Online/Offline Status component using window.addEventListener and cleanup functions.
+
+14. Create a search box and log "Searching for: [value]" whenever the user types.
+
+15. Create two states (name and age) and display a message whenever either value changes.
+
+16. Build a Dark Mode Toggle and log whether Dark Mode or Light Mode is enabled whenever the mode changes.
+
+17. Save a user's name in Local Storage whenever it changes and load it again after page refresh.
+
+18. Create a Live Digital Clock that updates every second using useEffect.
+
+19. Build a Weather App that fetches weather data from an API whenever the city name changes.
+
+20. Build a Student Dashboard that:
+    - Fetches student data from an API
+    - Displays all students
+    - Shows total student count
+    - Updates the page title with the total count
+    - Displays a loading message while fetching data
 
 ================================================================================
 TOPIC 3.3 — useRef Hook

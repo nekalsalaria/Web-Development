@@ -1,13 +1,19 @@
-import Data from "./Data";
+import { useState, useEffect } from "react";
 
-const App = () => {
-  return (
-    <div class="flex flex-row items-center">
-      <Data name="John Doe" age={30} city="New York"  />
-      <Data name="arun" age={11} city="UK" />
-      <Data name="ajay" age={30} city="paris" />
-    </div>
-  )
-}
+function PostList() {
+    const [posts, setPosts] = useState([]);
 
-export default App
+    useEffect(() => {
+      fetch("https://jsonplaceholder.typicode.com/posts?_limit=5")
+        .then(res => res.json())
+        .then(data => setPosts(data));
+    }, []);
+
+    return (
+      <ul>
+        {posts.map(post => <li key={post.id}>{post.title}</li>)}
+      </ul>
+    );
+  }
+         
+  export default PostList;
