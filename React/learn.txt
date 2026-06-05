@@ -838,74 +838,546 @@ EXAMPLE 3 — Fetch Real API:
     - Updates the page title with the total count
     - Displays a loading message while fetching data
 
-================================================================================
+
+==================================================================================
 TOPIC 3.3 — useRef Hook
-------------------------------------------------------------
-THEORY:
-  useRef returns a mutable object { current: value } that persists across
-  renders WITHOUT causing a re-render. Use cases:
-  1. Access DOM elements directly
-  2. Store previous values
-  3. Timer IDs
+----------------------------------------------------------------------------------
 
-EXAMPLE:
-  import { useRef } from 'react';
+WHAT IS useRef?
+--------------------------------------------------------------------------------
+useRef is a React Hook that lets us store a value or reference that stays available even after component re-renders,
+ without updating the UI.
 
-  function FocusInput() {
-    const inputRef = useRef(null);
+OR
 
-    const handleClick = () => {
-      inputRef.current.focus(); // Directly access DOM element
-    };
+useRef is used to store data that should remain the same between renders, 
+but changing that data does not cause the component to re-render.
 
-    return (
-      <div>
-        <input ref={inputRef} type="text" placeholder="Click button to focus me" />
-        <button onClick={handleClick}>Focus Input</button>
-      </div>
-    );
+
+In simple words:
+
+useState:
+  - Stores data
+  - Updates UI
+  - Causes Re-render
+
+useRef:
+  - Stores data
+  - Does NOT update UI automatically
+  - Does NOT cause Re-render
+
+Syntax:
+  
+  const myRef = useRef(initialValue);
+
+React returns:
+
+  {
+    current: initialValue
   }
+
+To access the value:
+
+  myRef.current
+
+
+--------------------------------------------------------------------------------
+REAL LIFE EXAMPLE
+--------------------------------------------------------------------------------
+
+Imagine you have a notebook.
+
+useState:
+  You write something in the notebook and immediately announce it to the
+  entire class. Everyone updates.
+
+useRef:
+  You write something in the notebook but keep it with yourself.
+  Nobody else knows. No UI update happens.
+
+That's why useRef does not trigger re-renders.
+
+
+--------------------------------------------------------------------------------
+WHEN TO USE useRef?
+--------------------------------------------------------------------------------
+
+1. Access DOM Elements Directly
+2. Store Previous Values
+3. Store Timer IDs
+4. Store Mutable Values Without Re-rendering
+
+
+================================================================================
+USE CASE 1 — ACCESS DOM ELEMENTS
+================================================================================
+
+One of the most common use cases of useRef is directly accessing an HTML
+element.
+
+Example:
+
+import { useRef } from "react";
+
+function FocusInput() {
+
+  const inputRef = useRef(null);
+
+  const handleFocus = () => {
+    inputRef.current.focus();
+  };
+
+  return (
+    <div>
+      <input
+        ref={inputRef}
+        type="text"
+        placeholder="Enter your name"
+      />
+
+      <button onClick={handleFocus}>
+        Focus Input
+      </button>
+    </div>
+  );
+}
+
+FLOW:
+
+Step 1:
+  React creates a reference object.
+
+  const inputRef = useRef(null);
+
+Step 2:
+  Input element is attached to the ref.
+
+  <input ref={inputRef} />
+
+Step 3:
+  React stores the actual DOM element inside:
+
+  inputRef.current
+
+Step 4:
+  We can directly access DOM methods.
+
+  inputRef.current.focus()
+
+OUTPUT:
+  Clicking button automatically focuses the input.
+
+
+================================================================================
+USE CASE 2 — STORE VALUE WITHOUT RE-RENDER
+================================================================================
+
+Example:
+
+import { useRef } from "react";
+
+function App() {
+
+  const countRef = useRef(0);
+
+  const increase = () => {
+    countRef.current++;
+    console.log(countRef.current);
+  };
+
+  return (
+    <button onClick={increase}>
+      Increase
+    </button>
+  );
+}
+
+Explanation:
+
+countRef.current starts with 0.
+
+Click 1:
+  current = 1
+
+Click 2:
+  current = 2
+
+Click 3:
+  current = 3
+
+Value changes successfully.
+
+BUT...
+
+UI does NOT re-render.
+
+Reason:
+  useRef does not trigger component updates.
+
+
+================================================================================
+USE CASE 3 — STORE TIMER ID
+================================================================================
+
+Example:
+
+import { useRef } from "react";
+
+function Timer() {
+
+  const timerRef = useRef(null);
+
+  const startTimer = () => {
+    timerRef.current = setInterval(() => {
+      console.log("Running...");
+    }, 1000);
+  };
+
+  const stopTimer = () => {
+    clearInterval(timerRef.current);
+  };
+
+  return (
+    <>
+      <button onClick={startTimer}>Start</button>
+      <button onClick={stopTimer}>Stop</button>
+    </>
+  );
+}
+
+Why useRef?
+
+Because timer IDs are not UI data.
+
+We only want to store them safely between renders.
+
+
+================================================================================
+IMPORTANT DIFFERENCE
+================================================================================
+
+useState vs useRef
+
+useState
+---------
+- Causes Re-render
+- Used for UI Data
+- Updates Screen
+- React Tracks Changes
+
+useRef
+---------
+- No Re-render
+- Used for Mutable Values
+- Does Not Update Screen Automatically
+- React Does Not Re-render On Changes
+
+
+================================================================================
+INTERVIEW QUESTIONS
+================================================================================
+
+Q1. What is useRef?
+
+Ans:
+useRef is a React Hook that stores mutable values and DOM references without
+causing re-renders.
+
+Q2. Does useRef trigger re-render?
+
+Ans:
+No.
+
+Q3. What is stored inside useRef?
+
+Ans:
+A mutable object with a current property.
+
+Example:
+
+  {
+    current: value
+  }
+
+Q4. Give common use cases of useRef.
+
+Ans:
+1. DOM Access
+2. Previous Values
+3. Timer IDs
+4. Mutable Variables
 
 
 ================================================================================
 TOPIC 3.4 — useContext Hook
-------------------------------------------------------------
-THEORY:
-  Context provides a way to pass data through the component tree WITHOUT
-  passing props manually at every level (avoids "prop drilling").
+--------------------------------------------------------------------------------
 
-  Steps:
-  1. Create Context with React.createContext()
-  2. Wrap components with Provider and pass value
-  3. Use useContext() in any child to read the value
+WHAT IS useContext?
+--------------------------------------------------------------------------------
 
-EXAMPLE:
-  import { createContext, useContext } from 'react';
+useContext is a React Hook used to share data between components WITHOUT
+passing props manually through every level.
 
-  // Step 1: Create context
-  const ThemeContext = createContext("light");
+It helps us avoid Prop Drilling.
 
-  // Step 2: Provide value
-  function App() {
-    return (
-      <ThemeContext.Provider value="dark">
-        <Toolbar />
-      </ThemeContext.Provider>
-    );
-  }
 
-  // Step 3: Consume context anywhere in tree
-  function Toolbar() {
-    return <ThemedButton />;
-  }
+================================================================================
+WHAT IS PROP DRILLING?
+================================================================================
 
-  function ThemedButton() {
-    const theme = useContext(ThemeContext);
-    return <button>Current Theme: {theme}</button>;
-  }
+Consider this component structure:
+
+App
+ └── Parent
+      └── Child
+           └── GrandChild
+
+Suppose GrandChild needs a username.
+
+Without Context:
+
+App passes username to Parent
+
+Parent passes username to Child
+
+Child passes username to GrandChild
+
+Example:
+
+<App username="Nekal" />
+   ↓
+<Parent username="Nekal" />
+   ↓
+<Child username="Nekal" />
+   ↓
+<GrandChild username="Nekal" />
+
+This repeated passing of props through multiple levels is called:
+
+PROP DRILLING
+
+
+================================================================================
+WHY useContext?
+================================================================================
+
+Instead of passing props again and again,
+
+We create a shared data source.
+
+Any child component can directly access the data.
+
+No prop drilling needed.
+
+
+================================================================================
+REAL LIFE EXAMPLE
+================================================================================
+
+Imagine a company notice board.
+
+Without Notice Board:
+  Every employee asks the manager individually.
+
+With Notice Board:
+  Information is displayed once.
+  Everyone reads it directly.
+
+Context = Notice Board
+
+Provider = Person who posts information
+
+Consumer = Person who reads information
+
+
+================================================================================
+3 STEPS TO USE CONTEXT
+================================================================================
+
+STEP 1:
+Create Context
+
+STEP 2:
+Provide Value
+
+STEP 3:
+Consume Value
+
+
+================================================================================
+STEP 1 — CREATE CONTEXT
+================================================================================
+
+import { createContext } from "react";
+
+const ThemeContext = createContext();
+
+Explanation:
+
+We create a global container that can hold data.
+
+
+================================================================================
+STEP 2 — PROVIDE VALUE
+================================================================================
+
+function App() {
+  return (
+    <ThemeContext.Provider value="dark">
+      <Toolbar />
+    </ThemeContext.Provider>
+  );
+}
+
+Explanation:
+
+Provider shares the value with all child components.
+
+Value:
+
+  dark
+
+
+================================================================================
+STEP 3 — CONSUME VALUE
+================================================================================
+
+import { useContext } from "react";
+
+function ThemedButton() {
+
+  const theme = useContext(ThemeContext);
+
+  return (
+    <button>
+      Current Theme: {theme}
+    </button>
+  );
+}
+
+Explanation:
+
+useContext reads data directly from the nearest Provider.
+
+
+================================================================================
+COMPLETE EXAMPLE
+================================================================================
+
+import {
+  createContext,
+  useContext
+} from "react";
+
+const ThemeContext = createContext("light");
+
+function App() {
+  return (
+    <ThemeContext.Provider value="dark">
+      <Toolbar />
+    </ThemeContext.Provider>
+  );
+}
+
+function Toolbar() {
+  return <ThemedButton />;
+}
+
+function ThemedButton() {
+
+  const theme = useContext(ThemeContext);
+
+  return (
+    <button>
+      Current Theme: {theme}
+    </button>
+  );
+}
 
 OUTPUT:
-  Current Theme: dark
+
+Current Theme: dark
+
+
+================================================================================
+FLOW OF CONTEXT
+================================================================================
+
+Create Context
+       ↓
+Provide Value
+       ↓
+Any Child Component
+       ↓
+useContext()
+       ↓
+Get Value
+
+
+================================================================================
+COMMON USE CASES OF CONTEXT
+================================================================================
+
+1. Theme (Dark / Light Mode)
+
+2. Logged In User Data
+
+3. Language Settings
+
+4. Authentication
+
+5. Global App Settings
+
+6. Shopping Cart Data
+
+
+================================================================================
+INTERVIEW QUESTIONS
+================================================================================
+
+Q1. What is useContext?
+
+Ans:
+useContext is a React Hook used to access shared data from a Context without
+passing props manually through every component.
+
+Q2. What problem does useContext solve?
+
+Ans:
+Prop Drilling.
+
+Q3. What is Prop Drilling?
+
+Ans:
+Passing props through multiple intermediate components just to reach a deeply
+nested child component.
+
+Q4. What are the three steps of Context API?
+
+Ans:
+1. Create Context
+2. Provide Value
+3. Consume Value
+
+Q5. Can useContext replace Redux?
+
+Ans:
+For small applications:
+  Yes.
+
+For large applications with complex state management:
+  Redux/Zustand is generally preferred.
+
+
+================================================================================
+QUICK REVISION
+================================================================================
+
+useRef:
+  Stores mutable values and DOM references without causing re-renders.
+
+useContext:
+  Shares data globally across components and avoids prop drilling.
 
 
 ================================================================================

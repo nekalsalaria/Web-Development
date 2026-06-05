@@ -1,19 +1,23 @@
-import { useState, useEffect } from "react";
+import { createContext, useContext } from "react";
 
-function PostList() {
-    const [posts, setPosts] = useState([]);
 
-    useEffect(() => {
-      fetch("https://jsonplaceholder.typicode.com/posts?_limit=5")
-        .then(res => res.json())
-        .then(data => setPosts(data));
-    }, []);
+const ThemeContext = createContext("dark");
 
-    return (
-      <ul>
-        {posts.map(post => <li key={post.id}>{post.title}</li>)}
-      </ul>
-    );
-  }
-         
-  export default PostList;
+function App() {
+  return (
+    <ThemeContext.Provider value="light">
+      <Toolbar />
+    </ThemeContext.Provider>
+  );
+}
+
+function Toolbar() {
+  return <ThemedButton />;
+}
+
+function ThemedButton() {
+  const theme = useContext(ThemeContext);
+
+  return <button>Current Theme: {theme}</button>;
+}
+export default App;
