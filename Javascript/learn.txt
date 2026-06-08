@@ -1,0 +1,2060 @@
+Chapter 1 — Introduction to JavaScript
+Chapter 2 — Variables & Data Types
+Chapter 3 — Operators
+Chapter 4 — Conditionals
+Chapter 5 — Loops
+Chapter 6 — Functions
+Chapter 7 — Arrays
+Chapter 8 — Objects
+Chapter 9 — DOM Manipulation
+Chapter 10 — Events
+Chapter 11 — ES6+ Modern JavaScript
+Chapter 12 — Asynchronous JavaScript
+Chapter 13 — Error Handling
+Chapter 14 — Practice Projects
+Chapter 15 — Interview Questions (Top 50)
+
+================================================================================
+                        JAVASCRIPT - COMPLETE LEARNING GUIDE
+                     From Beginner to Advanced (Start to End)
+================================================================================
+
+
+================================================================================
+CHAPTER 1: INTRODUCTION TO JAVASCRIPT
+================================================================================
+
+TOPIC 1.1 — What is JavaScript?
+------------------------------------------------------------
+THEORY:
+- JavaScript is a programming language used to make websites interactive.
+- It can respond to user actions like clicks, typing, and scrolling.
+- It runs directly in the web browser.
+- It can also run on servers using Node.js.
+- It is used to create dynamic and interactive web pages.
+- All modern web browsers support JavaScript natively.
+- JavaScript works together with HTML and CSS to build websites.
+- It is one of the most popular programming languages in web development.
+
+  The Three Pillars of Web Development:
+  - HTML        → Structure (skeleton of the page)
+  - CSS         → Styling  (appearance of the page)
+  - JavaScript  → Behavior (actions and interactivity)
+
+  Key Features:
+  - Runs in the browser — no installation needed
+  - Dynamic typing — no need to declare variable types
+  - Event-driven — responds to user actions
+  - Supports OOP and Functional programming styles
+  - Huge ecosystem — npm has millions of libraries
+
+Real Life Example:
+  HTML = Walls of a house.
+  CSS  = Paint and decoration.
+  JS   = Electricity and plumbing — the part that makes it functional.
+
+
+================================================================================
+TOPIC 1.2 — Where Does JavaScript Run?
+------------------------------------------------------------
+THEORY:
+  JavaScript can run in two places:
+  1. Browser (Chrome, Firefox, Safari) — used for frontend/UI
+  2. Node.js — used for backend/server-side
+
+  To write and run JavaScript you need:
+  - A browser (Chrome recommended)
+  - The browser console (F12 → Console tab)
+  - OR any code editor like VS Code
+
+
+================================================================================
+TOPIC 1.3 — Your First JavaScript Code
+------------------------------------------------------------
+
+EXAMPLE 1 — Browser Console:
+  // Open browser → Press F12 → Go to Console tab
+
+  console.log("Hello, World!");
+
+  // Output:
+  // Hello, World!
+
+EXAMPLE 2 — In HTML File:
+  <!DOCTYPE html>
+  <html>
+    <body>
+      <h1>My First JS Page</h1>
+      <script>
+        console.log("JavaScript is running!");
+        alert("Welcome!");
+      </script>
+    </body>
+  </html>
+
+  NOTE: Always place <script> tag at the BOTTOM of <body>
+        so HTML loads before JavaScript runs.
+
+
+================================================================================
+CHAPTER 2: VARIABLES & DATA TYPES
+================================================================================
+
+TOPIC 2.1 — What are Variables?
+------------------------------------------------------------
+THEORY:
+  A variable is a container used to store data.
+  Think of it like a labelled box — you put something inside
+  and retrieve it later by the label name.
+
+  Three Ways to Declare Variables:
+
+  var   name = "Rahul";    // Old way — AVOID in modern JS
+  let   age  = 20;         // Modern — can be changed (re-assigned)
+  const PI   = 3.14;       // Modern — CANNOT be changed (read-only)
+
+
+================================================================================
+TOPIC 2.2 — var vs let vs const
+------------------------------------------------------------
+
+  Feature        | var              | let          | const
+  ---------------|------------------|--------------|------------------
+  Scope          | Function         | Block        | Block
+  Re-declare     | Yes              | No           | No
+  Re-assign      | Yes              | Yes          | No
+  Hoisting       | Yes (undefined)  | No (TDZ)     | No (TDZ)
+  Use Today      | Avoid            | Yes          | Yes
+
+  TDZ = Temporal Dead Zone (cannot use before declaration)
+
+EXAMPLE:
+  var x = 10;
+  var x = 20;    // OK — re-declared (bad practice)
+
+  let y = 10;
+  let y = 20;    // ERROR — cannot re-declare
+
+  const Z = 10;
+  Z = 20;        // ERROR — cannot re-assign
+
+
+================================================================================
+TOPIC 2.3 — Data Types in JavaScript
+------------------------------------------------------------
+THEORY:
+  JavaScript has 7 Primitive Data Types and Reference Types.
+
+PRIMITIVE DATA TYPES:
+
+  // 1. String — Text
+  let name = "Priya";
+  let city = 'Jaipur';
+
+  // 2. Number — Integer or Decimal
+  let age   = 21;
+  let price = 99.99;
+
+  // 3. Boolean — true or false only
+  let isLoggedIn = true;
+  let isAdmin    = false;
+
+  // 4. undefined — declared but not assigned
+  let score;
+  console.log(score);   // undefined
+
+  // 5. null — intentionally empty
+  let user = null;
+
+  // 6. BigInt — very large numbers
+  let bigNum = 9007199254740991n;
+
+  // 7. Symbol — unique identifier (advanced)
+  let id = Symbol("id");
+
+NON-PRIMITIVE / REFERENCE TYPES:
+
+  // Object
+  let student = { name: "Arjun", age: 20, city: "Delhi" };
+
+  // Array
+  let fruits = ["Apple", "Banana", "Mango"];
+
+  // Function
+  function greet() { return "Hello!"; }
+
+
+================================================================================
+TOPIC 2.4 — typeof Operator
+------------------------------------------------------------
+EXAMPLE:
+  console.log(typeof "hello");       // string
+  console.log(typeof 42);            // number
+  console.log(typeof true);          // boolean
+  console.log(typeof undefined);     // undefined
+  console.log(typeof null);          // object  ← FAMOUS BUG IN JS!
+  console.log(typeof {});            // object
+  console.log(typeof []);            // object
+  console.log(typeof function(){}); // function
+
+  NOTE: typeof null === "object" is a well-known JavaScript bug.
+        It exists for backward compatibility.
+
+
+================================================================================
+TOPIC 2.5 — Type Conversion
+------------------------------------------------------------
+EXAMPLE:
+  // String to Number
+  let str  = "42";
+  let num  = Number(str);         // 42
+  let num2 = parseInt("3.7");     // 3  (integer only)
+  let num3 = parseFloat("3.7");   // 3.7
+
+  // Number to String
+  let n  = 100;
+  let s  = String(n);             // "100"
+  let s2 = n.toString();          // "100"
+
+  // To Boolean
+  Boolean(0);          // false
+  Boolean("");         // false
+  Boolean(null);       // false
+  Boolean(undefined);  // false
+  Boolean(NaN);        // false
+  Boolean(1);          // true
+  Boolean("hello");    // true
+
+  FALSY VALUES: 0, "", null, undefined, NaN, false
+  TRUTHY VALUES: everything else
+
+
+================================================================================
+MOST ASKED INTERVIEW QUESTIONS — Variables & Data Types
+================================================================================
+
+Q1. What is the difference between let, var, and const?
+
+Ans:
+  var   → function-scoped, can be re-declared, hoisted with undefined.
+  let   → block-scoped, cannot be re-declared, not hoisted (TDZ).
+  const → block-scoped, cannot be re-declared or re-assigned.
+  Always prefer let and const over var in modern JavaScript.
+
+---
+
+Q2. What are the 7 primitive data types in JavaScript?
+
+Ans:
+  1. String
+  2. Number
+  3. Boolean
+  4. undefined
+  5. null
+  6. BigInt
+  7. Symbol
+
+---
+
+Q3. What is the difference between null and undefined?
+
+Ans:
+  undefined → variable declared but no value assigned (JS default).
+  null      → intentionally empty. Developer explicitly set it.
+
+---
+
+Q4. What does typeof null return and why?
+
+Ans:
+  It returns "object".
+  This is a well-known BUG in JavaScript that has been kept
+  for backward compatibility since the very first version of JS.
+
+---
+
+Q5. What is type coercion?
+
+Ans:
+  JavaScript automatically converts types when needed.
+  "5" + 3  → "53"  (number becomes string — concat)
+  "5" - 3  → 2     (string becomes number — arithmetic)
+  This is called IMPLICIT type coercion.
+
+
+================================================================================
+CHAPTER 3: OPERATORS
+================================================================================
+
+TOPIC 3.1 — Arithmetic Operators
+------------------------------------------------------------
+EXAMPLE:
+  let a = 10, b = 3;
+
+  console.log(a + b);    // 13   Addition
+  console.log(a - b);    // 7    Subtraction
+  console.log(a * b);    // 30   Multiplication
+  console.log(a / b);    // 3.33 Division
+  console.log(a % b);    // 1    Modulus (Remainder)
+  console.log(a ** b);   // 1000 Exponentiation (Power)
+
+  // Increment & Decrement
+  let x = 5;
+  console.log(x++);   // 5  (post-increment: use THEN add 1)
+  console.log(++x);   // 7  (pre-increment:  add 1 THEN use)
+  console.log(x--);   // 7  (post-decrement)
+  console.log(--x);   // 5  (pre-decrement)
+
+
+================================================================================
+TOPIC 3.2 — Comparison Operators
+------------------------------------------------------------
+EXAMPLE:
+  // == vs ===   ← MOST ASKED INTERVIEW TOPIC
+
+  console.log(5 == "5");    // true  (value only, ignores type)
+  console.log(5 === "5");   // false (value AND type)
+  console.log(5 !== "5");   // true  (strict not equal)
+
+  console.log(10 > 5);     // true
+  console.log(10 < 5);     // false
+  console.log(10 >= 10);   // true
+  console.log(10 <= 9);    // false
+
+  RULE: Always use === in modern JavaScript.
+        == can give unexpected results due to type coercion.
+
+
+================================================================================
+TOPIC 3.3 — Logical Operators
+------------------------------------------------------------
+EXAMPLE:
+  // && (AND) — BOTH must be true
+  console.log(true && true);    // true
+  console.log(true && false);   // false
+
+  // || (OR) — at least ONE must be true
+  console.log(false || true);   // true
+  console.log(false || false);  // false
+
+  // ! (NOT) — reverses the value
+  console.log(!true);    // false
+  console.log(!false);   // true
+
+  // Real Example
+  let age = 20;
+  let hasID = true;
+  if (age >= 18 && hasID) {
+    console.log("Entry allowed");
+  }
+
+
+================================================================================
+TOPIC 3.4 — Assignment Operators
+------------------------------------------------------------
+EXAMPLE:
+  let n = 10;
+  n += 5;    // n = n + 5  → 15
+  n -= 3;    // n = n - 3  → 12
+  n *= 2;    // n = n * 2  → 24
+  n /= 4;    // n = n / 4  → 6
+  n %= 4;    // n = n % 4  → 2
+  n **= 3;   // n = n ** 3 → 8
+
+
+================================================================================
+TOPIC 3.5 — Ternary Operator
+------------------------------------------------------------
+THEORY:
+  Short form of if-else.
+  Syntax: condition ? valueIfTrue : valueIfFalse
+
+EXAMPLE:
+  let age = 18;
+  let status = age >= 18 ? "Adult" : "Minor";
+  console.log(status);   // Adult
+
+  // Same as:
+  // if (age >= 18) { status = "Adult"; }
+  // else           { status = "Minor"; }
+
+
+================================================================================
+MOST ASKED INTERVIEW QUESTIONS — Operators
+================================================================================
+
+Q1. What is the difference between == and ===?
+
+Ans:
+  == (loose equality)  → checks only VALUE, does type coercion.
+  === (strict equality) → checks both VALUE and TYPE.
+  5 == "5"   → true
+  5 === "5"  → false
+
+---
+
+Q2. What is the output of 0 == false?
+
+Ans:
+  true — because 0 and false are both falsy and == does coercion.
+  But 0 === false is false (different types).
+
+---
+
+Q3. What are falsy values in JavaScript?
+
+Ans:
+  6 falsy values: 0, "" (empty string), null, undefined, NaN, false
+  Everything else is truthy.
+
+
+================================================================================
+CHAPTER 4: CONDITIONALS
+================================================================================
+
+TOPIC 4.1 — if, else if, else
+------------------------------------------------------------
+EXAMPLE:
+  let marks = 75;
+
+  if (marks >= 90) {
+    console.log("Grade: A+");
+  } else if (marks >= 75) {
+    console.log("Grade: A");
+  } else if (marks >= 60) {
+    console.log("Grade: B");
+  } else if (marks >= 40) {
+    console.log("Grade: C");
+  } else {
+    console.log("Grade: F — Fail");
+  }
+
+  // Output: Grade: A
+
+
+================================================================================
+TOPIC 4.2 — switch Statement
+------------------------------------------------------------
+THEORY:
+  Use switch when comparing ONE value against MANY specific cases.
+
+EXAMPLE:
+  let day = "Monday";
+
+  switch (day) {
+    case "Monday":
+      console.log("Start of work week");
+      break;
+    case "Friday":
+      console.log("Weekend is near!");
+      break;
+    case "Saturday":
+    case "Sunday":
+      console.log("Weekend!");
+      break;
+    default:
+      console.log("Regular day");
+  }
+
+  WARNING: Always add "break" at the end of each case.
+           Without break, JS falls through to the next case!
+
+
+================================================================================
+MOST ASKED INTERVIEW QUESTIONS — Conditionals
+================================================================================
+
+Q1. What happens if we forget break in a switch statement?
+
+Ans:
+  JavaScript will "fall through" and execute all cases below
+  the matched one until it finds a break or reaches the end.
+  This causes unexpected bugs.
+
+---
+
+Q2. When should you use switch vs if-else?
+
+Ans:
+  switch  → comparing ONE value against many specific known values.
+  if-else → range comparisons or complex boolean conditions.
+
+
+================================================================================
+CHAPTER 5: LOOPS
+================================================================================
+
+TOPIC 5.1 — for Loop
+------------------------------------------------------------
+EXAMPLE:
+  // Syntax: for(initialize; condition; update)
+
+  for (let i = 1; i <= 5; i++) {
+    console.log("Count:", i);
+  }
+  // Output: Count: 1  Count: 2  Count: 3  Count: 4  Count: 5
+
+  // Loop through an array
+  let fruits = ["Apple", "Banana", "Mango"];
+  for (let i = 0; i < fruits.length; i++) {
+    console.log(fruits[i]);
+  }
+
+
+================================================================================
+TOPIC 5.2 — while Loop
+------------------------------------------------------------
+EXAMPLE:
+  let count = 1;
+
+  while (count <= 5) {
+    console.log("Count:", count);
+    count++;
+  }
+
+
+================================================================================
+TOPIC 5.3 — do-while Loop
+------------------------------------------------------------
+THEORY:
+  Runs at LEAST ONCE even if condition is false.
+  Condition is checked AFTER first execution.
+
+EXAMPLE:
+  let num = 10;
+
+  do {
+    console.log("Runs at least once:", num);
+    num++;
+  } while (num < 5);
+
+  // Output: Runs at least once: 10
+  // (runs once even though 10 < 5 is false)
+
+
+================================================================================
+TOPIC 5.4 — for...of Loop (Arrays — Modern)
+------------------------------------------------------------
+EXAMPLE:
+  let colors = ["Red", "Green", "Blue"];
+
+  for (let color of colors) {
+    console.log(color);
+  }
+  // Output: Red  Green  Blue
+
+  // Works on strings too!
+  for (let char of "Hello") {
+    console.log(char);
+  }
+  // Output: H  e  l  l  o
+
+
+================================================================================
+TOPIC 5.5 — for...in Loop (Objects)
+------------------------------------------------------------
+EXAMPLE:
+  let student = { name: "Arjun", age: 20, city: "Jaipur" };
+
+  for (let key in student) {
+    console.log(key, ":", student[key]);
+  }
+  // Output:
+  // name : Arjun
+  // age  : 20
+  // city : Jaipur
+
+
+================================================================================
+TOPIC 5.6 — break and continue
+------------------------------------------------------------
+EXAMPLE:
+  // break — exits the loop completely
+  for (let i = 1; i <= 10; i++) {
+    if (i === 5) break;
+    console.log(i);
+  }
+  // Output: 1 2 3 4
+
+  // continue — skips this iteration, goes to next
+  for (let i = 1; i <= 5; i++) {
+    if (i === 3) continue;
+    console.log(i);
+  }
+  // Output: 1 2 4 5
+
+
+================================================================================
+MOST ASKED INTERVIEW QUESTIONS — Loops
+================================================================================
+
+Q1. What is the difference between for-of and for-in?
+
+Ans:
+  for-of  → iterates over VALUES of an iterable (arrays, strings, sets).
+  for-in  → iterates over KEYS/PROPERTIES of an object.
+
+---
+
+Q2. What is the difference between break and continue?
+
+Ans:
+  break    → exits the ENTIRE loop immediately.
+  continue → skips only the CURRENT iteration, moves to next.
+
+---
+
+Q3. When does do-while run at least once?
+
+Ans:
+  Always — the condition is checked AFTER the first execution.
+
+
+================================================================================
+CHAPTER 6: FUNCTIONS
+================================================================================
+
+TOPIC 6.1 — Function Declaration
+------------------------------------------------------------
+EXAMPLE:
+  function greet(name) {
+    return "Hello, " + name + "!";
+  }
+
+  console.log(greet("Priya"));   // Hello, Priya!
+  console.log(greet("Rahul"));   // Hello, Rahul!
+
+  function add(a, b) {
+    return a + b;
+  }
+  console.log(add(10, 20));  // 30
+
+
+================================================================================
+TOPIC 6.2 — Function Expression
+------------------------------------------------------------
+EXAMPLE:
+  // Stored in a variable
+  const multiply = function(a, b) {
+    return a * b;
+  };
+
+  console.log(multiply(4, 5));  // 20
+
+
+================================================================================
+TOPIC 6.3 — Arrow Functions (ES6 — Modern)
+------------------------------------------------------------
+EXAMPLE:
+  // Regular function
+  function square(n) { return n * n; }
+
+  // Arrow function — same thing, shorter syntax
+  const square = (n) => n * n;
+
+  // Multiple parameters
+  const add = (a, b) => a + b;
+
+  // Multiple statements (needs curly braces + return)
+  const greet = (name) => {
+    let msg = "Hello, " + name;
+    return msg;
+  };
+
+  // No parameters
+  const sayHi = () => "Hi there!";
+
+
+================================================================================
+TOPIC 6.4 — Default Parameters
+------------------------------------------------------------
+EXAMPLE:
+  function greet(name = "Guest") {
+    return "Welcome, " + name + "!";
+  }
+
+  console.log(greet("Arjun"));  // Welcome, Arjun!
+  console.log(greet());          // Welcome, Guest!
+
+
+================================================================================
+TOPIC 6.5 — Rest Parameters & Spread Operator
+------------------------------------------------------------
+EXAMPLE:
+  // Rest (...) — collects multiple arguments into an array
+  function sum(...nums) {
+    return nums.reduce((total, n) => total + n, 0);
+  }
+  console.log(sum(1, 2, 3, 4, 5));  // 15
+
+  // Spread (...) — spreads array into individual values
+  let nums = [3, 1, 4, 1, 5, 9];
+  console.log(Math.max(...nums));    // 9
+
+  let a = [1, 2, 3];
+  let b = [4, 5, 6];
+  let c = [...a, ...b];   // [1, 2, 3, 4, 5, 6]
+
+
+================================================================================
+TOPIC 6.6 — Scope
+------------------------------------------------------------
+THEORY:
+  Scope determines WHERE a variable is accessible.
+  Types: Global Scope, Function Scope, Block Scope.
+
+EXAMPLE:
+  let globalVar = "I am global";   // Global scope
+
+  function test() {
+    let localVar = "I am local";   // Function scope
+    console.log(globalVar);   // OK — global is accessible
+    console.log(localVar);    // OK
+  }
+
+  console.log(globalVar);    // OK
+  console.log(localVar);     // ERROR — not accessible outside
+
+  // Block scope with let/const
+  if (true) {
+    let blockVar = "I am block scoped";
+    console.log(blockVar);   // OK
+  }
+  console.log(blockVar);     // ERROR — not accessible outside block
+
+
+================================================================================
+TOPIC 6.7 — Closures
+------------------------------------------------------------
+THEORY:
+  A closure is a function that REMEMBERS variables from its
+  outer scope even AFTER the outer function has finished executing.
+
+EXAMPLE:
+  function makeCounter() {
+    let count = 0;   // remembered by the inner function
+
+    return function() {
+      count++;
+      return count;
+    };
+  }
+
+  const counter = makeCounter();
+  console.log(counter());   // 1
+  console.log(counter());   // 2
+  console.log(counter());   // 3
+  // count is "enclosed" — remembered between calls
+
+
+================================================================================
+TOPIC 6.8 — Callback Functions
+------------------------------------------------------------
+THEORY:
+  A function passed as an argument to another function,
+  to be called later.
+
+EXAMPLE:
+  function doTask(name, callback) {
+    console.log("Starting task for", name);
+    callback();
+  }
+
+  function taskDone() {
+    console.log("Task completed!");
+  }
+
+  doTask("Arjun", taskDone);
+  // Output:
+  // Starting task for Arjun
+  // Task completed!
+
+  // Used everywhere: setTimeout, array methods, event handlers
+  setTimeout(() => console.log("After 2 seconds"), 2000);
+
+
+================================================================================
+TOPIC 6.9 — IIFE (Immediately Invoked Function Expression)
+------------------------------------------------------------
+THEORY:
+  A function that runs IMMEDIATELY when defined.
+  Used to avoid polluting the global scope.
+
+EXAMPLE:
+  (function() {
+    console.log("IIFE runs immediately!");
+  })();
+
+  // Arrow IIFE
+  (() => {
+    console.log("Arrow IIFE");
+  })();
+
+
+================================================================================
+MOST ASKED INTERVIEW QUESTIONS — Functions
+================================================================================
+
+Q1. What is a closure in JavaScript?
+
+Ans:
+  A function that retains access to its outer function's variables
+  even after the outer function has returned.
+  It "closes over" the variables from its lexical scope.
+
+---
+
+Q2. What is the difference between function declaration and expression?
+
+Ans:
+  Declaration  → Hoisted. Can be called BEFORE definition.
+  Expression   → NOT hoisted. Must be defined before calling.
+
+---
+
+Q3. What is a callback function?
+
+Ans:
+  A function passed as an argument to another function,
+  which gets called later. Example: setTimeout(callback, 1000).
+
+---
+
+Q4. What is arrow function? How is it different from regular function?
+
+Ans:
+  Arrow functions have shorter syntax.
+  They do NOT have their own "this" — inherit from enclosing scope.
+  Regular functions have their own "this".
+
+---
+
+Q5. What is hoisting?
+
+Ans:
+  Variables and function declarations are moved to the TOP of their
+  scope before code runs.
+  var     → hoisted with value undefined.
+  function → fully hoisted (can call before definition).
+  let/const → hoisted but NOT initialized (Temporal Dead Zone).
+
+
+================================================================================
+CHAPTER 7: ARRAYS
+================================================================================
+
+TOPIC 7.1 — Creating & Accessing Arrays
+------------------------------------------------------------
+EXAMPLE:
+  let fruits = ["Apple", "Banana", "Mango", "Orange"];
+
+  console.log(fruits[0]);               // Apple  (index starts at 0)
+  console.log(fruits[2]);               // Mango
+  console.log(fruits.length);           // 4
+  console.log(fruits[fruits.length-1]); // Orange (last element)
+  console.log(fruits.at(-1));           // Orange (ES2022)
+
+  // Update element
+  fruits[1] = "Grapes";
+  console.log(fruits);  // ["Apple", "Grapes", "Mango", "Orange"]
+
+
+================================================================================
+TOPIC 7.2 — Array Methods — Adding & Removing
+------------------------------------------------------------
+EXAMPLE:
+  let arr = [1, 2, 3];
+
+  arr.push(4);       // Add to END    → [1, 2, 3, 4]
+  arr.pop();         // Remove END    → [1, 2, 3]
+  arr.unshift(0);    // Add to START  → [0, 1, 2, 3]
+  arr.shift();       // Remove START  → [1, 2, 3]
+
+  // splice — remove/replace/insert at any position
+  arr.splice(1, 1);          // Remove 1 at index 1 → [1, 3]
+  arr.splice(1, 0, 99);      // Insert 99 at index 1 → [1, 99, 3]
+  arr.splice(1, 1, 50, 60);  // Replace index 1 with 50, 60
+
+
+================================================================================
+TOPIC 7.3 — Array Methods — Searching
+------------------------------------------------------------
+EXAMPLE:
+  let nums = [10, 20, 30, 40, 20];
+
+  nums.indexOf(20);        // 1  (first occurrence)
+  nums.lastIndexOf(20);    // 4  (last occurrence)
+  nums.includes(30);       // true
+  nums.includes(99);       // false
+
+  let found = nums.find(n => n > 25);        // 30
+  let idx   = nums.findIndex(n => n > 25);   // 2
+
+
+================================================================================
+TOPIC 7.4 — Higher-Order Array Methods (MOST IMPORTANT!)
+------------------------------------------------------------
+
+  map() — Transform each element, returns NEW array
+  -------
+  let numbers = [1, 2, 3, 4, 5];
+  let doubled = numbers.map(n => n * 2);
+  console.log(doubled);   // [2, 4, 6, 8, 10]
+
+  let students = [{ name: "Arjun", age: 20 }, { name: "Priya", age: 22 }];
+  let names = students.map(s => s.name);
+  // ["Arjun", "Priya"]
+
+  -------
+  filter() — Keep elements matching condition, returns NEW array
+  -------
+  let numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+  let even = numbers.filter(n => n % 2 === 0);
+  console.log(even);    // [2, 4, 6, 8, 10]
+  let big  = numbers.filter(n => n > 5);
+  console.log(big);     // [6, 7, 8, 9, 10]
+
+  -------
+  reduce() — Combine all elements into ONE value
+  -------
+  let nums = [1, 2, 3, 4, 5];
+  let sum  = nums.reduce((total, n) => total + n, 0);
+  console.log(sum);     // 15
+  let product = nums.reduce((acc, n) => acc * n, 1);
+  console.log(product); // 120
+
+  -------
+  forEach() — Execute for each element (NO return)
+  -------
+  let fruits = ["Apple", "Banana", "Mango"];
+  fruits.forEach((fruit, index) => {
+    console.log(index + 1, fruit);
+  });
+  // 1 Apple
+  // 2 Banana
+  // 3 Mango
+
+  -------
+  Other Important Methods:
+  -------
+  let a = [1, 2, 3];
+  let b = [4, 5, 6];
+
+  a.concat(b);                       // [1,2,3,4,5,6] — merge
+  [10,20,30,40,50].slice(1, 3);      // [20, 30] — extract portion
+  [3, 1, 2].sort();                  // [1, 2, 3]
+  [30, 5, 100].sort((a,b) => a-b);   // [5, 30, 100] — numeric sort
+  [1,[2,[3,[4]]]].flat(Infinity);    // [1, 2, 3, 4] — flatten
+
+  [1,2,3].some(n => n > 2);    // true  — at least one passes
+  [1,2,3].every(n => n > 0);   // true  — ALL must pass
+
+
+================================================================================
+MOST ASKED INTERVIEW QUESTIONS — Arrays
+================================================================================
+
+Q1. What is the difference between map and forEach?
+
+Ans:
+  map     → returns a NEW array with transformed elements.
+  forEach → just executes code for each element, returns undefined.
+  Use map when you need a new array.
+  Use forEach for side effects only.
+
+---
+
+Q2. What is the difference between slice and splice?
+
+Ans:
+  slice  → creates NEW array by extracting portion. DOES NOT modify original.
+  splice → MODIFIES original array. Can add, remove, or replace elements.
+
+---
+
+Q3. How does reduce work?
+
+Ans:
+  Takes each element and combines into a single value using an accumulator.
+  [1,2,3].reduce((sum, n) => sum + n, 0) → 6
+
+---
+
+Q4. How do you remove duplicates from an array?
+
+Ans:
+  [...new Set(array)]
+  Set only keeps unique values, then spread back to array.
+  Example: [...new Set([1,2,2,3,3,3])] → [1, 2, 3]
+
+
+================================================================================
+CHAPTER 8: OBJECTS
+================================================================================
+
+TOPIC 8.1 — Creating Objects
+------------------------------------------------------------
+EXAMPLE:
+  let student = {
+    name : "Arjun",
+    age  : 20,
+    city : "Jaipur",
+    greet: function() {
+      return "Hi, I am " + this.name;
+    }
+  };
+
+  // Access properties
+  console.log(student.name);       // Arjun  (dot notation)
+  console.log(student["age"]);     // 20     (bracket notation)
+  console.log(student.greet());    // Hi, I am Arjun
+
+  // Add / Update / Delete
+  student.email = "arjun@gmail.com";  // Add new property
+  student.age   = 21;                  // Update
+  delete student.city;                 // Delete
+
+
+================================================================================
+TOPIC 8.2 — Object Destructuring (ES6)
+------------------------------------------------------------
+EXAMPLE:
+  let person = { name: "Priya", age: 22, city: "Delhi" };
+
+  // Without destructuring (old way)
+  let name = person.name;
+  let age  = person.age;
+
+  // With destructuring (cleaner)
+  let { name, age, city } = person;
+  console.log(name, age, city);   // Priya 22 Delhi
+
+  // Rename while destructuring
+  let { name: studentName } = person;
+  console.log(studentName);   // Priya
+
+  // Default values
+  let { name, score = 0 } = person;
+  console.log(score);   // 0 (not in object, default used)
+
+  // In function parameters
+  function display({ name, age }) {
+    console.log(`${name} is ${age} years old`);
+  }
+  display(person);  // Priya is 22 years old
+
+
+================================================================================
+TOPIC 8.3 — Spread with Objects
+------------------------------------------------------------
+EXAMPLE:
+  let obj1 = { a: 1, b: 2 };
+  let obj2 = { c: 3, d: 4 };
+
+  let merged  = { ...obj1, ...obj2 };    // { a:1, b:2, c:3, d:4 }
+  let copy    = { ...obj1 };             // shallow copy
+  let updated = { ...obj1, b: 99 };      // override b → { a:1, b:99 }
+
+
+================================================================================
+TOPIC 8.4 — Object Built-in Methods
+------------------------------------------------------------
+EXAMPLE:
+  let car = { brand: "Toyota", year: 2022, price: 800000 };
+
+  Object.keys(car);     // ["brand", "year", "price"]
+  Object.values(car);   // ["Toyota", 2022, 800000]
+  Object.entries(car);  // [["brand","Toyota"], ["year",2022], ...]
+
+  // Loop through entries
+  for (let [key, value] of Object.entries(car)) {
+    console.log(`${key}: ${value}`);
+  }
+
+  // Freeze — make object immutable
+  Object.freeze(car);
+  car.brand = "Honda";    // silently fails
+  console.log(car.brand); // Toyota (unchanged)
+
+
+================================================================================
+TOPIC 8.5 — this Keyword
+------------------------------------------------------------
+THEORY:
+  "this" refers to the object that is CALLING the function.
+
+EXAMPLE:
+  const student = {
+    name: "Rahul",
+    age : 20,
+    introduce() {
+      console.log(`I am ${this.name}, age ${this.age}`);
+    }
+  };
+
+  student.introduce();  // I am Rahul, age 20
+
+  // Arrow functions do NOT have their own "this"
+  const obj = {
+    name : "Test",
+    arrow  : () => console.log(this.name),  // undefined
+    regular: function() { console.log(this.name); }  // "Test"
+  };
+
+
+================================================================================
+MOST ASKED INTERVIEW QUESTIONS — Objects
+================================================================================
+
+Q1. What is the difference between dot and bracket notation?
+
+Ans:
+  Dot notation     → obj.name — clean, works for valid identifiers.
+  Bracket notation → obj["name"] — works for dynamic keys, spaces,
+                     special characters.
+
+---
+
+Q2. What does "this" refer to in JavaScript?
+
+Ans:
+  In a method   → refers to the object calling the method.
+  In strict mode regular function → undefined.
+  Arrow function → inherits "this" from enclosing scope.
+
+---
+
+Q3. What is shallow copy vs deep copy?
+
+Ans:
+  Shallow copy → copies only ONE level (nested objects still referenced).
+  Deep copy    → copies ALL nested levels.
+  Shallow: {...obj} or Object.assign({}, obj)
+  Deep:    structuredClone(obj) or JSON.parse(JSON.stringify(obj))
+
+
+================================================================================
+CHAPTER 9: DOM MANIPULATION
+================================================================================
+
+TOPIC 9.1 — What is the DOM?
+------------------------------------------------------------
+THEORY:
+  DOM (Document Object Model) is a tree-like representation of HTML.
+  JavaScript uses the DOM to read, add, change, and delete
+  HTML elements dynamically without reloading the page.
+
+
+================================================================================
+TOPIC 9.2 — Selecting Elements
+------------------------------------------------------------
+EXAMPLE:
+  // By ID — returns single element
+  let heading = document.getElementById("main-heading");
+
+  // By class — returns HTMLCollection
+  let cards = document.getElementsByClassName("card");
+
+  // By tag — returns HTMLCollection
+  let paragraphs = document.getElementsByTagName("p");
+
+  // querySelector — returns FIRST match (CSS selector)
+  let btn   = document.querySelector(".btn-primary");
+  let title = document.querySelector("#title");
+
+  // querySelectorAll — returns ALL matches as NodeList
+  let allBtns  = document.querySelectorAll("button");
+  let allCards = document.querySelectorAll(".card");
+
+
+================================================================================
+TOPIC 9.3 — Changing Content & Attributes
+------------------------------------------------------------
+EXAMPLE:
+  let heading = document.querySelector("h1");
+
+  // Change text
+  heading.textContent = "New Text";
+
+  // Change HTML (parses HTML tags)
+  heading.innerHTML = "<span>New <b>HTML</b></span>";
+
+  // Change attributes
+  let img = document.querySelector("img");
+  img.setAttribute("src", "new-image.jpg");
+  img.getAttribute("src");
+
+  // Change styles
+  heading.style.color = "blue";
+  heading.style.fontSize = "32px";
+
+  // Add/remove CSS classes
+  heading.classList.add("active");
+  heading.classList.remove("hidden");
+  heading.classList.toggle("dark");
+  heading.classList.contains("active");  // true or false
+
+
+================================================================================
+TOPIC 9.4 — Creating & Removing Elements
+------------------------------------------------------------
+EXAMPLE:
+  let newDiv = document.createElement("div");
+  newDiv.textContent = "I am a new div!";
+  newDiv.classList.add("card");
+
+  document.body.appendChild(newDiv);  // Add to page
+
+  // Modern insert
+  let parent = document.querySelector("#container");
+  parent.insertAdjacentHTML("beforeend", "<p>New paragraph</p>");
+
+  // Remove element
+  newDiv.remove();
+
+
+================================================================================
+MOST ASKED INTERVIEW QUESTIONS — DOM
+================================================================================
+
+Q1. What is the difference between innerHTML and textContent?
+
+Ans:
+  innerHTML   → parses HTML tags and renders them.
+  textContent → treats everything as plain text (safer for user input).
+  For security (XSS prevention), prefer textContent.
+
+---
+
+Q2. What is the difference between getElementById and querySelector?
+
+Ans:
+  getElementById → older, selects by ID only, very fast.
+  querySelector  → accepts ANY CSS selector, more flexible.
+
+
+================================================================================
+CHAPTER 10: EVENTS
+================================================================================
+
+TOPIC 10.1 — addEventListener
+------------------------------------------------------------
+EXAMPLE:
+  let btn = document.querySelector("#myBtn");
+
+  btn.addEventListener("click", function() {
+    alert("Button clicked!");
+  });
+
+  // Arrow function
+  btn.addEventListener("click", () => {
+    console.log("Clicked!");
+  });
+
+  // Named function (can be removed later)
+  function handleClick() { console.log("Clicked!"); }
+  btn.addEventListener("click", handleClick);
+  btn.removeEventListener("click", handleClick);
+
+
+================================================================================
+TOPIC 10.2 — Event Object
+------------------------------------------------------------
+EXAMPLE:
+  btn.addEventListener("click", function(event) {
+    console.log(event.type);       // "click"
+    console.log(event.target);     // element clicked
+    console.log(event.target.id);  // its ID
+
+    event.preventDefault();    // prevent default (form submit, link)
+    event.stopPropagation();   // stop bubbling up to parents
+  });
+
+  // Keyboard events
+  document.addEventListener("keydown", (e) => {
+    console.log("Key:", e.key);
+    if (e.key === "Enter") { /* do something */ }
+  });
+
+
+================================================================================
+TOPIC 10.3 — Event Bubbling & Delegation
+------------------------------------------------------------
+THEORY:
+  Event Bubbling: when event fires on element, it travels UP
+  through parent elements.
+
+  Event Delegation: attach ONE listener to parent, handle
+  events from all children using event.target.
+
+EXAMPLE:
+  let list = document.querySelector("#list");
+
+  list.addEventListener("click", function(e) {
+    if (e.target.tagName === "LI") {
+      console.log("Clicked:", e.target.textContent);
+      e.target.classList.toggle("selected");
+    }
+  });
+
+  // Handles ALL <li> clicks — even dynamically added ones!
+  // Much more efficient than adding listener to each <li>
+
+
+================================================================================
+CHAPTER 11: ES6+ MODERN JAVASCRIPT
+================================================================================
+
+TOPIC 11.1 — Template Literals
+------------------------------------------------------------
+EXAMPLE:
+  let name = "Priya";
+  let age  = 22;
+
+  // Old way
+  let msg1 = "Hello, " + name + "! You are " + age + " years old.";
+
+  // Template literal (backticks)
+  let msg2 = `Hello, ${name}! You are ${age} years old.`;
+
+  // Expressions inside ${}
+  console.log(`2 + 2 = ${2 + 2}`);  // 2 + 2 = 4
+
+  // Multi-line strings
+  let multiLine = `
+    This is
+    a multi-line
+    string
+  `;
+
+
+================================================================================
+TOPIC 11.2 — Optional Chaining & Nullish Coalescing
+------------------------------------------------------------
+EXAMPLE:
+  // Optional Chaining ?.
+  // Access nested properties SAFELY without errors
+  let user = { profile: { name: "Arjun" } };
+
+  console.log(user?.profile?.name);    // "Arjun"
+  console.log(user?.address?.city);    // undefined (no error!)
+  // Without ?. → user.address.city would crash with TypeError!
+
+  // Nullish Coalescing ??
+  // Returns right side ONLY if left is null or undefined
+  let score = null;
+  console.log(score ?? "Not set");   // "Not set"
+  console.log(0 ?? "Not set");       // 0  (0 is not null/undefined)
+  console.log(0 || "Not set");       // "Not set"  (|| treats 0 as falsy)
+
+  KEY DIFFERENCE: ?? only triggers for null/undefined.
+                  || triggers for ALL falsy values (0, "", false too).
+
+
+================================================================================
+TOPIC 11.3 — Classes
+------------------------------------------------------------
+EXAMPLE:
+  class Animal {
+    constructor(name, sound) {
+      this.name  = name;
+      this.sound = sound;
+    }
+
+    speak() {
+      return `${this.name} says ${this.sound}`;
+    }
+  }
+
+  // Inheritance
+  class Dog extends Animal {
+    constructor(name) {
+      super(name, "Woof");  // Call parent constructor
+    }
+
+    fetch() {
+      return `${this.name} fetches the ball!`;
+    }
+  }
+
+  let d = new Dog("Bruno");
+  console.log(d.speak());   // Bruno says Woof
+  console.log(d.fetch());   // Bruno fetches the ball!
+
+
+================================================================================
+TOPIC 11.4 — Modules (import / export)
+------------------------------------------------------------
+EXAMPLE:
+  // math.js — Named exports
+  export const PI = 3.14159;
+  export function add(a, b) { return a + b; }
+
+  // Default export
+  export default function greet(name) {
+    return `Hello, ${name}`;
+  }
+
+  // main.js — Import
+  import greet, { PI, add } from "./math.js";
+
+  console.log(PI);           // 3.14159
+  console.log(add(2, 3));    // 5
+  console.log(greet("Sam")); // Hello, Sam
+
+  // Import everything
+  import * as math from "./math.js";
+  console.log(math.add(1, 2));
+
+
+================================================================================
+CHAPTER 12: ASYNCHRONOUS JAVASCRIPT
+================================================================================
+
+TOPIC 12.1 — Why Async?
+------------------------------------------------------------
+THEORY:
+  JavaScript is SINGLE-THREADED — runs one thing at a time.
+  Async code lets other code run while waiting for slow tasks
+  like network requests, file reading, timers.
+
+  Real Life: Restaurant analogy.
+  - You order food (start request)
+  - Talk to friends while waiting (other code runs)
+  - Eat when food arrives (callback/then executes)
+
+
+================================================================================
+TOPIC 12.2 — Callbacks (Old Approach)
+------------------------------------------------------------
+EXAMPLE:
+  function fetchData(callback) {
+    setTimeout(() => {
+      let data = { user: "Arjun", age: 20 };
+      callback(data);
+    }, 2000);
+  }
+
+  fetchData(function(data) {
+    console.log("Got:", data.user);
+  });
+
+  // Problem — Callback Hell (unreadable nested code)
+  fetchUser(function(user) {
+    fetchOrders(user.id, function(orders) {
+      fetchDetails(orders[0], function(details) {
+        // deeply nested — hard to read and maintain!
+      });
+    });
+  });
+
+
+================================================================================
+TOPIC 12.3 — Promises
+------------------------------------------------------------
+THEORY:
+  A Promise represents a value available in the FUTURE.
+  Three states: pending → fulfilled OR rejected.
+
+EXAMPLE:
+  let promise = new Promise((resolve, reject) => {
+    let success = true;
+    if (success) {
+      resolve("Data fetched!");
+    } else {
+      reject("Something went wrong!");
+    }
+  });
+
+  promise
+    .then(result => console.log(result))   // on success
+    .catch(error  => console.log(error))   // on failure
+    .finally(()   => console.log("Done")); // always runs
+
+  // Chaining
+  fetch("https://jsonplaceholder.typicode.com/users/1")
+    .then(response => response.json())
+    .then(user     => console.log(user.name))
+    .catch(err     => console.log("Error:", err));
+
+
+================================================================================
+TOPIC 12.4 — async / await (Modern — RECOMMENDED)
+------------------------------------------------------------
+THEORY:
+  async/await is syntactic sugar over Promises.
+  Makes async code look like synchronous code.
+  Much easier to read and debug.
+
+EXAMPLE:
+  async function fetchUser(id) {
+    try {
+      let response = await fetch(`https://jsonplaceholder.typicode.com/users/${id}`);
+      let user     = await response.json();
+      console.log(user.name);
+      return user;
+    } catch (error) {
+      console.log("Error:", error.message);
+    }
+  }
+
+  fetchUser(1);
+
+  // Multiple awaits — clean, no nesting
+  async function loadData() {
+    let user    = await fetchUser(1);
+    let posts   = await fetchPosts(user.id);
+    let details = await fetchDetails(posts[0].id);
+  }
+
+  // Parallel requests (FASTER — run at same time)
+  async function loadParallel() {
+    let [users, posts] = await Promise.all([
+      fetch(".../users").then(r => r.json()),
+      fetch(".../posts").then(r => r.json())
+    ]);
+  }
+
+
+================================================================================
+MOST ASKED INTERVIEW QUESTIONS — Async JavaScript
+================================================================================
+
+Q1. What is the difference between synchronous and asynchronous?
+
+Ans:
+  Synchronous  → runs line by line, BLOCKS further execution.
+  Asynchronous → starts a task, lets other code run while waiting.
+
+---
+
+Q2. What are the states of a Promise?
+
+Ans:
+  Pending   → initial state, not yet settled.
+  Fulfilled → resolved successfully.
+  Rejected  → failed.
+  Once settled, cannot change state.
+
+---
+
+Q3. What is the difference between Promise.all and Promise.race?
+
+Ans:
+  Promise.all  → runs all in parallel, resolves when ALL succeed.
+                 Rejects immediately if ANY one fails.
+  Promise.race → resolves/rejects as soon as FIRST one settles.
+
+---
+
+Q4. What is async/await?
+
+Ans:
+  Syntactic sugar over Promises.
+  async function always returns a Promise.
+  await pauses inside the async function until Promise resolves.
+  Makes code look synchronous — easier to read and debug.
+
+
+================================================================================
+CHAPTER 13: ERROR HANDLING
+================================================================================
+
+TOPIC 13.1 — try / catch / finally
+------------------------------------------------------------
+EXAMPLE:
+  try {
+    let result = undefined.name;   // TypeError
+  } catch (error) {
+    console.log("Error caught:", error.message);
+    console.log("Error type:", error.name);
+  } finally {
+    console.log("This ALWAYS runs — use for cleanup");
+  }
+
+
+================================================================================
+TOPIC 13.2 — Custom Errors with throw
+------------------------------------------------------------
+EXAMPLE:
+  function divide(a, b) {
+    if (b === 0) {
+      throw new Error("Cannot divide by zero!");
+    }
+    return a / b;
+  }
+
+  try {
+    console.log(divide(10, 0));
+  } catch (e) {
+    console.log(e.message);  // Cannot divide by zero!
+  }
+
+  // Custom Error class
+  class ValidationError extends Error {
+    constructor(message) {
+      super(message);
+      this.name = "ValidationError";
+    }
+  }
+
+  throw new ValidationError("Email is required!");
+
+
+================================================================================
+CHAPTER 14: PRACTICE PROJECTS
+================================================================================
+
+BEGINNER LEVEL
+--------------
+
+Project 1 — Calculator
+  Features: Add, Subtract, Multiply, Divide
+  Concepts: variables, functions, events, DOM
+
+Project 2 — Digital Clock
+  Features: Shows current time, updates every second
+  Concepts: Date object, setInterval, DOM
+
+  function showTime() {
+    let now = new Date();
+    let h = now.getHours().toString().padStart(2, "0");
+    let m = now.getMinutes().toString().padStart(2, "0");
+    let s = now.getSeconds().toString().padStart(2, "0");
+    document.querySelector("#clock").textContent = `${h}:${m}:${s}`;
+  }
+  setInterval(showTime, 1000);
+
+Project 3 — Todo List
+  Features: Add, mark complete, delete, count tasks
+  Concepts: arrays, DOM, events, classList
+
+Project 4 — Random Quote Generator
+  Features: Store 10 quotes, show random on button click
+  Concepts: arrays, Math.random, DOM
+
+INTERMEDIATE LEVEL
+------------------
+
+Project 5 — Student Grade Calculator
+  Input: marks in 5 subjects
+  Output: total, percentage, grade, pass/fail
+
+Project 6 — Weather App
+  Fetch real weather from OpenWeatherMap API
+  Concepts: fetch, async/await, DOM, error handling
+
+Project 7 — Form Validation
+  Validate: Name, Email, Phone, Password
+  Show error messages per field
+
+Project 8 — Shopping Cart
+  Products, add/remove from cart, total price
+  Concepts: arrays, objects, map, reduce
+
+
+================================================================================
+CHAPTER 15: TOP 30 INTERVIEW QUESTIONS
+================================================================================
+
+BASICS
+------
+
+Q1. What is JavaScript? Compiled or Interpreted?
+
+Ans:
+  JavaScript is a lightweight, interpreted, dynamically-typed language.
+  Modern engines (V8) use JIT compilation for performance.
+  Runs in browsers and Node.js.
+
+---
+
+Q2. What is NaN and how to check for it?
+
+Ans:
+  NaN = Not a Number. Result of invalid math like 0/0 or parseInt("abc").
+  Check with: Number.isNaN(value) — NOT isNaN() alone (it converts first).
+
+---
+
+Q3. What is the output of: typeof typeof 1?
+
+Ans:
+  "string"
+  typeof 1 → "number"
+  typeof "number" → "string"
+
+---
+
+Q4. What is the output of: 0.1 + 0.2 === 0.3?
+
+Ans:
+  false — floating-point precision.
+  0.1 + 0.2 = 0.30000000000000004
+  Use: Math.abs(a - b) < Number.EPSILON to compare floats.
+
+FUNCTIONS & SCOPE
+-----------------
+
+Q5. What is a pure function?
+
+Ans:
+  1. Always returns same output for same inputs.
+  2. Has no side effects (doesn't modify external state).
+
+---
+
+Q6. What is a higher-order function?
+
+Ans:
+  A function that takes another function as argument OR returns a function.
+  Examples: map, filter, reduce, forEach, setTimeout.
+
+---
+
+Q7. What is the difference between call, apply, and bind?
+
+Ans:
+  All three set "this" explicitly.
+  call(thisArg, arg1, arg2) → calls IMMEDIATELY.
+  apply(thisArg, [args])    → calls IMMEDIATELY, args as array.
+  bind(thisArg)             → returns NEW function with "this" bound.
+
+ARRAYS & OBJECTS
+----------------
+
+Q8. How do you clone an object?
+
+Ans:
+  Shallow: {...obj} or Object.assign({}, obj)
+  Deep:    structuredClone(obj)
+           or JSON.parse(JSON.stringify(obj)) — no functions/undefined
+
+---
+
+Q9. What is array destructuring?
+
+Ans:
+  let [a, b, c] = [1, 2, 3];
+  Skip elements: let [, second] = [1, 2];
+
+ASYNC
+-----
+
+Q10. What is the event loop?
+
+Ans:
+  JavaScript's mechanism to handle async operations.
+  Call Stack runs code.
+  Web APIs handle async tasks (timers, fetch).
+  Callback Queue holds completed callbacks.
+  Event loop moves callbacks to call stack when it is empty.
+
+---
+
+Q11. What is the difference between microtasks and macrotasks?
+
+Ans:
+  Microtasks (Promises, queueMicrotask) run BEFORE next macrotask.
+  Macrotasks (setTimeout, setInterval) run AFTER all microtasks.
+  Order: Call Stack → Microtask Queue → Macrotask Queue.
+
+DOM & BROWSER
+-------------
+
+Q12. What is event delegation?
+
+Ans:
+  Attaching ONE listener to parent to handle events from all children.
+  Use event.target to check which child was clicked.
+  More efficient than adding listeners to every child element.
+
+---
+
+Q13. What is localStorage vs sessionStorage vs cookies?
+
+Ans:
+  localStorage    → persists until manually cleared, ~5-10MB.
+  sessionStorage  → persists until tab closes, ~5-10MB.
+  cookies         → sent to server with requests, ~4KB, has expiry.
+
+PERFORMANCE
+-----------
+
+Q14. What is debouncing?
+
+Ans:
+  Delays function execution until after a wait period since last call.
+  Use case: search-as-you-type — wait until user stops typing.
+
+---
+
+Q15. What is throttling?
+
+Ans:
+  Limits function execution to once per specified interval.
+  Use case: scroll and resize event handlers.
+
+---
+
+Q16. What is memoization?
+
+Ans:
+  Caching function results based on arguments.
+  Repeated calls with same args return cached result — no re-computation.
+  Improves performance for expensive pure functions.
+
+TRICKY QUESTIONS
+----------------
+
+Q17. What is the output of: [] + []?
+
+Ans:
+  "" (empty string) — both arrays convert to empty strings and concat.
+
+---
+
+Q18. What is the output of: [] + {}?
+
+Ans:
+  "[object Object]" — [] becomes "" and {} becomes "[object Object]".
+
+---
+
+Q19. What is the difference between for-of and for-in on an array?
+
+Ans:
+  for-of → iterates over array VALUES: 10, 20, 30.
+  for-in → iterates over array INDICES (keys) as strings: "0", "1", "2".
+  Use for-of for arrays.
+
+---
+
+Q20. What is a Symbol?
+
+Ans:
+  Primitive type that creates a GUARANTEED UNIQUE identifier.
+  Symbol("desc") !== Symbol("desc")
+  Used as unique object property keys.
+  Not enumerable in for-in loops.
+
+---
+
+Q21. What is a WeakMap?
+
+Ans:
+  Like Map but keys must be objects and are weakly referenced.
+  If no other reference to key exists, it can be garbage collected.
+  No size property, not iterable.
+
+---
+
+Q22. What is a generator function?
+
+Ans:
+  Declared with function*.
+  Can pause and resume using yield.
+  Returns an iterator object with .next() method.
+  Used for lazy evaluation and infinite sequences.
+
+---
+
+Q23. What is the Proxy object?
+
+Ans:
+  Lets you intercept and customize operations on an object
+  (get, set, delete, function calls).
+  Used in reactivity systems (Vue 3), validation, logging.
+
+---
+
+Q24. What is Optional Chaining?
+
+Ans:
+  ?. operator safely accesses nested properties.
+  Returns undefined instead of throwing TypeError if value is null/undefined.
+  user?.address?.city → undefined (no crash)
+
+---
+
+Q25. What is Nullish Coalescing ??
+
+Ans:
+  Returns right-hand side ONLY when left is null or undefined.
+  0 ?? "default" → 0 (0 is not null/undefined)
+  0 || "default" → "default" (|| treats 0 as falsy)
+
+---
+
+Q26. What is the difference between deep and shallow copy?
+
+Ans:
+  Shallow → copies one level, nested objects are still referenced.
+  Deep    → copies all levels, completely independent.
+
+---
+
+Q27. What is IIFE?
+
+Ans:
+  Immediately Invoked Function Expression.
+  Runs immediately when defined.
+  Used to avoid polluting global scope.
+  (function() { ... })();
+
+---
+
+Q28. What is "use strict"?
+
+Ans:
+  Enables strict mode — more secure, catches silent errors.
+  Prevents use of undeclared variables.
+  Disables some deprecated features.
+  "use strict"; at top of file or function.
+
+---
+
+Q29. What is the difference between == and Object.is()?
+
+Ans:
+  Object.is(NaN, NaN) → true  (== gives false)
+  Object.is(+0, -0)   → false (== gives true)
+  Object.is is the most accurate equality check.
+
+---
+
+Q30. What are the ways to create objects in JavaScript?
+
+Ans:
+  1. Object literal:  let obj = {};
+  2. new Object():    let obj = new Object();
+  3. Constructor:     function Person() {} → new Person()
+  4. Class:           class Car {} → new Car()
+  5. Object.create(): let obj = Object.create(proto);
+
+
+================================================================================
+QUICK REFERENCE CHEAT SHEET
+================================================================================
+
+  ARRAY METHODS
+  ─────────────────────────────────────────────────────
+  push/pop         → Add/Remove from END
+  shift/unshift    → Remove/Add from START
+  splice           → Remove/Add at any position (mutates)
+  slice            → Extract portion (does NOT mutate)
+  map              → Transform elements → new array
+  filter           → Keep matching elements → new array
+  reduce           → Combine all → single value
+  forEach          → Execute for each (no return)
+  find             → First element that passes test
+  findIndex        → Index of first element that passes
+  includes         → true/false
+  indexOf          → first position (-1 if not found)
+  sort             → sort in place (use (a,b)=>a-b for numbers)
+  flat             → flatten nested arrays
+  some             → true if at least one passes
+  every            → true if all pass
+  concat           → merge arrays
+  join             → array to string
+
+  ─────────────────────────────────────────────────────
+  STRING METHODS
+  ─────────────────────────────────────────────────────
+  length           → number of characters
+  toUpperCase()    → "hello" → "HELLO"
+  toLowerCase()    → "HELLO" → "hello"
+  trim()           → remove whitespace from both ends
+  split(",")       → string to array
+  includes("js")   → true/false
+  indexOf("js")    → position (-1 if not found)
+  slice(0, 3)      → extract portion
+  replace("a","b") → replace first occurrence
+  replaceAll()     → replace all occurrences
+  startsWith()     → true/false
+  endsWith()       → true/false
+  padStart(5,"0")  → "007"
+  padEnd(5,"0")    → "700"
+  repeat(3)        → "abc" → "abcabcabc"
+
+  ─────────────────────────────────────────────────────
+  OBJECT METHODS
+  ─────────────────────────────────────────────────────
+  Object.keys(obj)      → array of keys
+  Object.values(obj)    → array of values
+  Object.entries(obj)   → array of [key, value] pairs
+  Object.assign(t, s)   → copy properties from s to t
+  Object.freeze(obj)    → make immutable
+  Object.create(proto)  → create with prototype
+
+  ─────────────────────────────────────────────────────
+  USEFUL MATH METHODS
+  ─────────────────────────────────────────────────────
+  Math.round(4.5)    → 5
+  Math.floor(4.9)    → 4
+  Math.ceil(4.1)     → 5
+  Math.abs(-5)       → 5
+  Math.max(1,2,3)    → 3
+  Math.min(1,2,3)    → 1
+  Math.pow(2, 10)    → 1024
+  Math.sqrt(16)      → 4
+  Math.random()      → 0 to 1 (exclusive)
+  Math.trunc(4.9)    → 4
+
+  ─────────────────────────────────────────────────────
+  COMMON PATTERNS
+  ─────────────────────────────────────────────────────
+  // Random number between min and max
+  Math.floor(Math.random() * (max - min + 1)) + min;
+
+  // Remove duplicates from array
+  [...new Set(array)]
+
+  // Check if value is array
+  Array.isArray(value)
+
+  // Swap two variables
+  [a, b] = [b, a];
+
+  // Convert NodeList to Array
+  [...document.querySelectorAll("li")]
+
+  // Short circuit default value
+  let name = inputName || "Guest";
+
+  // Nullish default
+  let count = userCount ?? 0;
+
+
+================================================================================
+HOMEWORK TASKS
+================================================================================
+
+BEGINNER:
+  1. Create a counter: Increase, Decrease, Reset
+  2. Print multiplication table of any number
+  3. Find even and odd numbers from an array
+  4. Reverse a string without using .reverse()
+  5. Check if a number is prime
+  6. Find the largest number in an array
+  7. Count vowels in a string
+  8. Remove duplicates from an array
+  9. FizzBuzz: 1-100, print Fizz (3), Buzz (5), FizzBuzz (both)
+  10. Flatten a nested array
+
+INTERMEDIATE:
+  1. Build a TODO list (add, delete, mark complete)
+  2. Build a search filter for a student list
+  3. Fetch users from jsonplaceholder and display cards
+  4. Build a stopwatch (start, stop, reset)
+  5. Build a quiz app with score tracking
+  6. Form validation (name, email, phone, password)
+  7. Shopping cart with total calculation
+  8. Build a digital clock
+  9. Build a random password generator
+  10. Weather app using a free API
+
+================================================================================
+                    JavaScript is the language of the web.
+                       Keep coding. Keep building!
+================================================================================
