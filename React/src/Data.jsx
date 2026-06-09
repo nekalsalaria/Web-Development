@@ -1,11 +1,22 @@
-function Data(props) {
-    return (
-      <div className="flex flex-col border-4 p-4 m-4">
-        <h3>Name: {props.name}</h3>
-        <p>Age: {props.age}</p>
-        <p>City: {props.city}</p>
-      </div>
-    );
-  }
+const Data = () => {
+  const arr = [
+    {
+      name: 'John',
+      age: 30,
+      city: 'New York'
+    }
+  ]
+  return (
+    <div>
+      {arr.map((item, index) => (
+        <div key={index}>
+          <h3>Name: {item.name}</h3>
+          <p>Age: {item.age}</p>
+          <p>City: {item.city}</p>
+        </div>
+      ))}
+    </div>
+  )
+}
 
-export default Data;
+export default Data
