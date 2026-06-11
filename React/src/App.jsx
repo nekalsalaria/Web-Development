@@ -1,19 +1,18 @@
-import { useState } from "react";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import Navabar from "./components/Navabar";
 
 const App = () => {
-  const [dark,setDark] = useState(false)
-  return(
-    <div 
-    style={{
-      background:dark ?"black":"white",
-      color:dark?"white":"black",
-      minHeight:"100vh",
-    }}>
-      <h1>
-      {dark?"Dark Mode":"Light Mode"}
-    </h1>
-    <button onClick={()=>setDark(!dark)} >Toggle Theme</button>
-    </div>
+  return (
+    
+    <BrowserRouter>
+    <Navabar/>
+    <Routes>
+        <Route path="/" element={<h1>Home</h1>} />
+        <Route path="/about" element={<h1>About</h1>} />
+        <Route path="/contact" element={<h1>Contact</h1>} />
+        <Route path="*" element={<h1>404 Not Found</h1>} />
+    </Routes>
+    </BrowserRouter>
   )
 }
 
