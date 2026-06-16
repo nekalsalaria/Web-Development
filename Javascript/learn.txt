@@ -682,18 +682,17 @@ TOPIC 6.5 — Rest Parameters & Spread Operator
 ------------------------------------------------------------
 EXAMPLE:
   // Rest (...) — collects multiple arguments into an array
-  function sum(...nums) {
-    return nums.reduce((total, n) => total + n, 0);
+
+  function print(...c){
+    console.log(c);
   }
-  console.log(sum(1, 2, 3, 4, 5));  // 15
 
+  print(2,3,4,5,6) // [2,3,4,5,6]
+ 
   // Spread (...) — spreads array into individual values
-  let nums = [3, 1, 4, 1, 5, 9];
-  console.log(Math.max(...nums));    // 9
 
-  let a = [1, 2, 3];
-  let b = [4, 5, 6];
-  let c = [...a, ...b];   // [1, 2, 3, 4, 5, 6]
+  let nums = [3, 1, 4, 1, 5, 9];
+  console.log(...nums);  // 3,1,4,1,5,9
 
 
 ================================================================================
