@@ -768,9 +768,6 @@ EXAMPLE:
   // Starting task for Arjun
   // Task completed!
 
-  // Used everywhere: setTimeout, array methods, event handlers
-  setTimeout(() => console.log("After 2 seconds"), 2000);
-
 
 ================================================================================
 TOPIC 6.9 — IIFE (Immediately Invoked Function Expression)
@@ -794,48 +791,325 @@ EXAMPLE:
 MOST ASKED INTERVIEW QUESTIONS — Functions
 ================================================================================
 
-Q1. What is a closure in JavaScript?
+Q1. What is a Closure in JavaScript?
 
 Ans:
-  A function that retains access to its outer function's variables
-  even after the outer function has returned.
-  It "closes over" the variables from its lexical scope.
+  A closure is a function that remembers variables from its
+  outer scope even after the outer function has finished execution.
+
+Example:
+  function outer() {
+      let x = 10;
+
+      return function () {
+          console.log(x);
+      };
+  }
 
 ---
 
-Q2. What is the difference between function declaration and expression?
+Q2. What is the difference between Function Declaration and Function Expression?
 
 Ans:
-  Declaration  → Hoisted. Can be called BEFORE definition.
-  Expression   → NOT hoisted. Must be defined before calling.
+
+Function Declaration
+✔ Hoisted completely
+✔ Can be called before definition
+
+Example:
+  greet();
+
+  function greet() {
+      console.log("Hello");
+  }
+
+
+Function Expression
+✔ Not fully hoisted
+✔ Must be defined before calling
+
+Example:
+  const greet = function () {
+      console.log("Hello");
+  };
 
 ---
 
-Q3. What is a callback function?
+Q3. What is a Callback Function?
 
 Ans:
-  A function passed as an argument to another function,
-  which gets called later. Example: setTimeout(callback, 1000).
+  A callback is a function passed as an argument to another
+  function and executed later.
+
+Example:
+  setTimeout(function () {
+      console.log("Hello");
+  }, 1000);
 
 ---
 
-Q4. What is arrow function? How is it different from regular function?
+Q4. What is an Arrow Function?
 
 Ans:
-  Arrow functions have shorter syntax.
-  They do NOT have their own "this" — inherit from enclosing scope.
-  Regular functions have their own "this".
+  Arrow functions provide a shorter syntax for writing functions.
+
+Example:
+  const add = (a, b) => a + b;
+
+Difference from Regular Function:
+
+Arrow Function
+✔ No own 'this'
+✔ Cannot be used as constructor
+✔ No arguments object
+
+Regular Function
+✔ Has its own 'this'
+✔ Can be used as constructor
+✔ Has arguments object
 
 ---
 
-Q5. What is hoisting?
+Q5. What is Hoisting?
 
 Ans:
-  Variables and function declarations are moved to the TOP of their
-  scope before code runs.
-  var     → hoisted with value undefined.
-  function → fully hoisted (can call before definition).
-  let/const → hoisted but NOT initialized (Temporal Dead Zone).
+  Hoisting is JavaScript's behavior of moving declarations
+  to the top of their scope before execution.
+
+var
+✔ Hoisted
+✔ Initialized with undefined
+
+function
+✔ Completely hoisted
+
+let / const
+✔ Hoisted
+✘ Not initialized
+✘ Stay in Temporal Dead Zone (TDZ)
+
+---
+
+Q6. What is the difference between Parameters and Arguments?
+
+Ans:
+
+Parameters
+→ Variables written in function definition.
+
+Arguments
+→ Actual values passed during function call.
+
+
+Example:
+
+function add(a, b) {
+    return a + b;
+}
+
+add(5, 10);
+
+
+Parameters : a, b
+Arguments  : 5, 10
+
+
+---
+
+Q7. What is an IIFE?
+
+Ans:
+  IIFE stands for Immediately Invoked Function Expression.
+
+It executes immediately after being defined.
+
+Example:
+
+(function () {
+    console.log("Executed");
+})();
+
+
+---
+
+Q8. What is Lexical Scope?
+
+Ans:
+  Lexical scope means a function can access variables
+  defined in its parent scope.
+
+
+Example:
+
+let x = 10;
+
+function outer() {
+
+    let y = 20;
+
+    function inner() {
+        console.log(x);
+        console.log(y);
+    }
+
+    inner();
+}
+
+
+---
+
+Q9. Can functions be returned from another function?
+
+Ans:
+  Yes.
+
+Functions are first-class citizens in JavaScript,
+so they can be stored in variables, passed as arguments,
+and returned from other functions.
+
+
+Example:
+
+function greet() {
+
+    return function () {
+        console.log("Hello");
+    };
+
+}
+
+const sayHello = greet();
+
+sayHello();
+
+
+---
+
+Q10. Can functions be passed as arguments?
+
+Ans:
+  Yes.
+
+
+Example:
+
+function greet(name) {
+    console.log("Hello " + name);
+}
+
+function process(callback) {
+    callback("John");
+}
+
+process(greet);
+
+
+---
+
+Q11. What is the difference between == and === inside functions?
+
+Ans:
+
+==
+✔ Compares values only
+✔ Performs type conversion
+
+===
+
+✔ Compares value and datatype
+✔ No type conversion
+
+
+Example:
+
+5 == "5"    // true
+
+5 === "5"   // false
+
+
+---
+
+Q12. What are Higher Order Functions?
+
+Ans:
+  A higher-order function is a function that takes another
+  function as an argument or returns a function.
+
+
+Examples:
+
+map()
+
+filter()
+
+reduce()
+
+setTimeout()
+
+forEach()
+
+
+---
+
+Q13. What is the 'arguments' object?
+
+Ans:
+  It is an array-like object containing all arguments
+  passed to a regular function.
+
+Arrow functions do not have their own arguments object.
+
+
+Example:
+
+function demo() {
+
+    console.log(arguments);
+
+}
+
+demo(1, 2, 3);
+
+
+---
+
+Q14. What is the difference between Rest Parameter and Spread Operator?
+
+Ans:
+
+Rest Parameter (...)
+
+✔ Collects multiple values into an array
+
+
+function sum(...nums) {
+
+}
+
+
+Spread Operator (...)
+
+✔ Expands an array into individual values
+
+
+const arr = [1,2,3];
+
+console.log(...arr);
+
+
+---
+
+Q15. Are functions in JavaScript first-class citizens?
+
+Ans:
+  Yes.
+
+Functions can be:
+
+✔ Stored in variables
+✔ Passed as arguments
+✔ Returned from functions
+✔ Added inside objects
 
 
 ================================================================================
