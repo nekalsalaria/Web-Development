@@ -1261,6 +1261,92 @@ Ans:
   Example: [...new Set([1,2,2,3,3,3])] → [1, 2, 3]
 
 
+==========================================
+JavaScript Arrays Practice Questions (30)
+==========================================
+
+Q1. Create an array of 5 fruits and print the array.
+
+Q2. Create an array [10, 20, 30, 40, 50] and print the first element.
+
+Q3. Print the last element of an array using:
+    a) length
+    b) at(-1)
+
+Q4. Change the third element of an array to "JavaScript".
+
+Q5. Find and print the length of an array.
+
+Q6. Add 100 to the end of an array using push().
+
+Q7. Remove the last element using pop().
+
+Q8. Add "Start" at the beginning using unshift().
+
+Q9. Remove the first element using shift().
+
+Q10. Insert "Orange" at index 2 using splice().
+
+Q11. Remove the element at index 3 using splice().
+
+Q12. Replace the second element with "React" using splice().
+
+Q13. Find the index of "Banana" using indexOf().
+
+Q14. Check whether "Mango" exists in an array using includes().
+
+Q15. Find the last occurrence of 20 in:
+     [10, 20, 30, 20, 40]
+
+Q16. Use find() to get the first number greater than 50.
+     Array: [20, 45, 55, 60, 70]
+
+Q17. Use findIndex() to find the index of the first even number.
+     Array: [1, 3, 5, 8, 10]
+
+Q18. Use map() to double every number.
+     Array: [1, 2, 3, 4, 5]
+
+Q19. Use map() to convert all names to uppercase.
+     Array: ["ram", "shyam", "mohan"]
+
+Q20. Use filter() to get all even numbers.
+     Array: [1, 2, 3, 4, 5, 6, 7, 8]
+
+Q21. Use filter() to get numbers greater than 25.
+     Array: [10, 20, 30, 40, 50]
+
+Q22. Use reduce() to find the sum of:
+     [5, 10, 15, 20]
+
+Q23. Use reduce() to find the product of:
+     [2, 3, 4]
+
+Q24. Use forEach() to print every student's name with index.
+     Array: ["Aman", "Rahul", "Priya"]
+
+Q25. Merge the following arrays using concat():
+     [1, 2, 3]
+     [4, 5, 6]
+
+Q26. Extract [20, 30, 40] from:
+     [10, 20, 30, 40, 50]
+     using slice().
+
+Q27. Sort the following array in ascending order:
+     [50, 10, 40, 20, 30]
+
+Q28. Flatten the following array:
+     [1, [2, [3, [4]]]]
+
+Q29. Check if at least one number is greater than 100 using some().
+     Array: [20, 50, 150, 70]
+
+Q30. Check if all numbers are positive using every().
+     Array: [10, 20, 30, 40]
+```
+
+
 ================================================================================
 CHAPTER 8: OBJECTS
 ================================================================================
