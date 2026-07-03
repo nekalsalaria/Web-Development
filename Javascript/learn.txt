@@ -1462,34 +1462,423 @@ EXAMPLE:
 
 
 ================================================================================
-MOST ASKED INTERVIEW QUESTIONS — Objects
+MOST ASKED INTERVIEW QUESTIONS — OBJECTS
 ================================================================================
 
-Q1. What is the difference between dot and bracket notation?
+
+Q1. What is an Object in JavaScript?
 
 Ans:
-  Dot notation     → obj.name — clean, works for valid identifiers.
-  Bracket notation → obj["name"] — works for dynamic keys, spaces,
-                     special characters.
 
----
+Object is a collection of key-value pairs.
 
-Q2. What does "this" refer to in JavaScript?
+Example:
+
+let user = {
+ name:"Amit",
+ age:20
+};
+
+
+
+------------------------------------------------------------
+
+
+Q2. Difference between Dot notation and Bracket notation?
+
 
 Ans:
-  In a method   → refers to the object calling the method.
-  In strict mode regular function → undefined.
-  Arrow function → inherits "this" from enclosing scope.
 
----
+Dot Notation:
 
-Q3. What is shallow copy vs deep copy?
+object.name
+
+
+- Easy to read
+- Key name fixed
+
+
+Bracket Notation:
+
+object["name"]
+
+
+- Used for dynamic keys
+- Supports spaces and special characters
+
+
+
+------------------------------------------------------------
+
+
+Q3. What is Object Destructuring?
+
 
 Ans:
-  Shallow copy → copies only ONE level (nested objects still referenced).
-  Deep copy    → copies ALL nested levels.
-  Shallow: {...obj} or Object.assign({}, obj)
-  Deep:    structuredClone(obj) or JSON.parse(JSON.stringify(obj))
+
+Extracting object properties into variables.
+
+
+Example:
+
+let user={
+ name:"Raj",
+ age:21
+};
+
+
+let {name,age}=user;
+
+
+
+------------------------------------------------------------
+
+
+Q4. Difference between Object.freeze() and Object.seal()?
+
+
+Object.freeze():
+
+- Cannot add property
+- Cannot delete property
+- Cannot update property
+
+
+Object.seal():
+
+- Cannot add property
+- Cannot delete property
+- Can update existing property
+
+
+
+------------------------------------------------------------
+
+
+Q5. What is Spread Operator in Objects?
+
+
+Ans:
+
+Used to copy or merge objects.
+
+
+Example:
+
+let obj2 = {...obj1};
+
+
+
+------------------------------------------------------------
+
+
+Q6. What is Shallow Copy?
+
+
+Ans:
+
+Only first level properties are copied.
+
+Nested objects share same reference.
+
+
+Example:
+
+let copy = {...user};
+
+
+
+------------------------------------------------------------
+
+
+Q7. What is Deep Copy?
+
+
+Ans:
+
+Complete independent copy including nested objects.
+
+
+Example:
+
+let copy = structuredClone(obj);
+
+
+
+------------------------------------------------------------
+
+
+Q8. Difference between == and === ?
+
+
+==  checks only value.
+
+=== checks value + datatype.
+
+
+Example:
+
+5 == "5"   // true
+
+5 === "5" // false
+
+
+
+------------------------------------------------------------
+
+
+Q9. What is this keyword?
+
+
+Ans:
+
+this refers to object which calls the method.
+
+
+
+Example:
+
+let obj={
+
+name:"A",
+
+show(){
+ console.log(this.name);
+}
+
+}
+
+
+
+------------------------------------------------------------
+
+
+Q10. Why arrow function does not work with this?
+
+
+Ans:
+
+Because arrow functions don't create their own this.
+
+They use lexical this from parent scope.
+
+
+
+------------------------------------------------------------
+
+
+Q11. Difference between Object and Array?
+
+
+Object:
+
+- Key value data
+- Keys are custom
+
+
+Array:
+
+- Ordered collection
+- Index based
+
+
+
+------------------------------------------------------------
+
+
+Q12. How to check if property exists in object?
+
+
+Method 1:
+
+"name" in user
+
+
+Method 2:
+
+user.hasOwnProperty("name")
+
+
+
+------------------------------------------------------------
+
+
+Q13. What is optional chaining?
+
+
+Ans:
+
+Safely access nested properties.
+
+
+Example:
+
+user?.address?.city
+
+
+
+------------------------------------------------------------
+
+
+Q14. What is Object.entries() used for?
+
+
+Ans:
+
+Convert object into array of key-value pairs.
+
+
+
+------------------------------------------------------------
+
+
+Q15. How to loop through object?
+
+
+Example:
+
+
+for(let key in obj){
+
+ console.log(key,obj[key]);
+
+}
+
+
+
+================================================================================
+PRACTICE QUESTIONS — OBJECTS (30 QUESTIONS)
+================================================================================
+
+
+LEVEL 1 — BASIC
+------------------------------------------------------------
+
+
+1. Create an object student with name, age and marks.
+
+
+2. Access object values using dot notation.
+
+
+3. Access object values using bracket notation.
+
+
+4. Add a new property email in object.
+
+
+5. Update age property of object.
+
+
+6. Delete city property from object.
+
+
+7. Create object with one function and call it.
+
+
+8. Print all keys of an object.
+
+
+9. Print all values of an object.
+
+
+10. Count total number of properties in an object.
+
+
+
+
+LEVEL 2 — MEDIUM
+------------------------------------------------------------
+
+
+11. Loop through object using for-in loop.
+
+
+12. Convert object into array using Object.entries().
+
+
+13. Merge two objects using spread operator.
+
+
+14. Clone an object using spread operator.
+
+
+15. Destructure name and age from user object.
+
+
+16. Rename property while destructuring.
+
+
+17. Set default value while destructuring.
+
+
+18. Create function which accepts object and destructures it.
+
+
+19. Check whether property exists or not.
+
+
+20. Compare two objects and check if they are same.
+
+
+
+
+LEVEL 3 — INTERMEDIATE
+------------------------------------------------------------
+
+
+21. Create nested object and access nested values.
+
+
+22. Update nested object property.
+
+
+23. Make shallow copy and show reference problem.
+
+
+24. Create deep copy of nested object.
+
+
+25. Freeze an object and test update operation.
+
+
+26. Use Object.keys() and find object length.
+
+
+27. Create object method using this keyword.
+
+
+28. Create arrow function inside object and check this value.
+
+
+29. Convert array of objects into single object.
+
+
+Example:
+
+[
+ {id:1,name:"A"},
+ {id:2,name:"B"}
+]
+
+
+30. Find highest salary employee.
+
+
+Example:
+
+employees = [
+
+ {name:"A", salary:30000},
+
+ {name:"B", salary:50000}
+
+]
+
+
+Output:
+
+{name:"B", salary:50000}
 
 
 ================================================================================
