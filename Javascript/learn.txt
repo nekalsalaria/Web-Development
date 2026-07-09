@@ -1396,12 +1396,6 @@ EXAMPLE:
   let { name, score = 0 } = person;
   console.log(score);   // 0 (not in object, default used)
 
-  // In function parameters
-  function display({ name, age }) {
-    console.log(`${name} is ${age} years old`);
-  }
-  display(person);  // Priya is 22 years old
-
 
 ================================================================================
 TOPIC 8.3 — Spread with Objects
@@ -1424,12 +1418,7 @@ EXAMPLE:
   Object.keys(car);     // ["brand", "year", "price"]
   Object.values(car);   // ["Toyota", 2022, 800000]
   Object.entries(car);  // [["brand","Toyota"], ["year",2022], ...]
-
-  // Loop through entries
-  for (let [key, value] of Object.entries(car)) {
-    console.log(`${key}: ${value}`);
-  }
-
+  
   // Freeze — make object immutable
   Object.freeze(car);
   car.brand = "Honda";    // silently fails
