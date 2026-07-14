@@ -1949,25 +1949,331 @@ EXAMPLE:
   // Remove element
   newDiv.remove();
 
+================================================================================
+TOPIC 9.5 — Practice Questions
+================================================================================
+
+Q1. Write a line of code to select the element with id="main-heading" and
+    store it in a variable called heading.
+
+    ANSWER:
+    let heading = document.getElementById("main-heading");
+
+
+Q2. What is the difference between getElementsByClassName and
+    querySelectorAll? Which one returns a "live" collection?
+
+    ANSWER:
+    getElementsByClassName returns a live HTMLCollection — it automatically
+    updates if matching elements are added or removed from the DOM.
+    querySelectorAll returns a static NodeList — it is a snapshot taken at
+    the moment it was called and does not update automatically.
+
+
+Q3. Select all <button> elements on the page and change their background
+    color to "orange" using a loop.
+
+    ANSWER:
+    let allBtns = document.querySelectorAll("button");
+    allBtns.forEach(btn => {
+      btn.style.backgroundColor = "orange";
+    });
+
+
+Q4. What's the difference between textContent and innerHTML? Give an
+    example where using innerHTML incorrectly could be a security risk.
+
+    ANSWER:
+    textContent sets or gets only the raw text of an element (HTML tags are
+    treated as plain text, not parsed). innerHTML parses the string as HTML
+    and inserts actual elements.
+    Risk: if you insert user-supplied input directly via innerHTML
+    (e.g. element.innerHTML = userInput), and that input contains a
+    <script> or event handler attribute, it can execute — this is a
+    Cross-Site Scripting (XSS) vulnerability. textContent is safe from this
+    because it never parses tags.
+
+
+Q5. Select an <img> element and change its "src" and "alt" attributes to
+    "logo.png" and "Company Logo" respectively.
+
+    ANSWER:
+    let img = document.querySelector("img");
+    img.setAttribute("src", "logo.png");
+    img.setAttribute("alt", "Company Logo");
+
+
+Q6. Write code that toggles a class called "dark-mode" on the <body>
+    element every time it's called.
+
+    ANSWER:
+    document.body.classList.toggle("dark-mode");
+
+
+Q7. Create a new <li> element with the text "New Item" and append it to an
+    existing <ul> with id="list".
+
+    ANSWER:
+    let li = document.createElement("li");
+    li.textContent = "New Item";
+    document.getElementById("list").appendChild(li);
+
+
+Q8. What does insertAdjacentHTML do, and what are the four possible
+    position values it accepts?
+
+    ANSWER:
+    insertAdjacentHTML inserts an HTML string into the DOM tree at a
+    specified position relative to the calling element, without replacing
+    existing content (unlike innerHTML). The four positions are:
+    - "beforebegin" — before the element itself
+    - "afterbegin"  — just inside the element, before its first child
+    - "beforeend"   — just inside the element, after its last child
+    - "afterend"    — after the element itself
+
+
+Q9. How would you remove all <p> elements that have the class "ad" from
+    the page?
+
+    ANSWER:
+    document.querySelectorAll("p.ad").forEach(p => p.remove());
+
+
+Q10. Given: <div id="box" class="card hidden"></div>
+     Write code to check if #box has the class "hidden", and if so, remove
+     it and add the class "visible" instead.
+
+     ANSWER:
+     let box = document.getElementById("box");
+     if (box.classList.contains("hidden")) {
+       box.classList.remove("hidden");
+       box.classList.add("visible");
+     }
+
+
+Q11. What is returned by document.getElementsByTagName("p") if there are
+     no <p> elements on the page — null, undefined, or something else?
+
+     ANSWER:
+     It returns an empty HTMLCollection (length 0), not null or undefined.
+     Methods starting with getElementsBy... and querySelectorAll always
+     return a collection, even if empty. Only getElementById and
+     querySelector can return null.
+
+
+Q12. Write a function highlight(selector) that selects every element
+     matching the given CSS selector and sets their style.backgroundColor
+     to "yellow".
+
+     ANSWER:
+     function highlight(selector) {
+       document.querySelectorAll(selector).forEach(el => {
+         el.style.backgroundColor = "yellow";
+       });
+     }
+
+
+Q13. What's wrong with the following code, and how would you fix it?
+
+     let items = document.getElementsByClassName("item");
+     for (let i = 0; i < items.length; i++) {
+       items[i].remove();
+     }
+
+     ANSWER:
+     getElementsByClassName returns a LIVE collection. As each element is
+     removed, the collection shrinks immediately, and indexes shift — so
+     the loop skips every other element. Fix: loop backwards, convert to
+     an array first, or use querySelectorAll (static) instead:
+     Array.from(items).forEach(item => item.remove());
+
+
+Q14. Create a <div> with a class "card", set its innerHTML to include a
+     heading and a paragraph, then insert it as the first child inside
+     #container instead of the last.
+
+     ANSWER:
+     let card = document.createElement("div");
+     card.classList.add("card");
+     card.innerHTML = "<h3>Title</h3><p>Description text</p>";
+     document.querySelector("#container").insertAdjacentElement("afterbegin", card);
+     // or: container.prepend(card);
+
+
+Q15. Explain the difference between setAttribute("class", "foo") and
+     classList.add("foo").
+
+     ANSWER:
+     setAttribute("class", "foo") completely overwrites the element's
+     entire class attribute, wiping out any existing classes.
+     classList.add("foo") adds "foo" to the existing list of classes
+     without disturbing the others.
+
 
 ================================================================================
-MOST ASKED INTERVIEW QUESTIONS — DOM
+TOPIC 9.6 — Interview Questions
 ================================================================================
 
-Q1. What is the difference between innerHTML and textContent?
+Q1. What is the DOM, and how does it relate to HTML and JavaScript?
 
-Ans:
-  innerHTML   → parses HTML tags and renders them.
-  textContent → treats everything as plain text (safer for user input).
-  For security (XSS prevention), prefer textContent.
+    ANSWER:
+    The DOM is an in-memory, tree-structured object representation of an
+    HTML (or XML) document that the browser builds after parsing the page.
+    It is not the HTML source itself — it's a live data structure. JavaScript
+    doesn't modify the HTML file; it modifies the DOM, and the browser
+    re-renders the page to reflect those changes.
 
----
 
-Q2. What is the difference between getElementById and querySelector?
+Q2. What's the difference between the DOM and the BOM (Browser Object
+    Model)?
 
-Ans:
-  getElementById → older, selects by ID only, very fast.
-  querySelector  → accepts ANY CSS selector, more flexible.
+    ANSWER:
+    The DOM represents the document/page content (elements, text, attributes).
+    The BOM represents the browser window itself — objects like window,
+    navigator, location, history, and screen, which exist independent of
+    any document content.
+
+
+Q3. Explain the difference between querySelector/querySelectorAll and the
+    older getElementBy... methods. When might you still prefer the older
+    methods?
+
+    ANSWER:
+    querySelector/querySelectorAll accept any CSS selector, offering far
+    more flexibility (combinators, pseudo-classes, attribute selectors,
+    etc.). The getElementBy... methods only match by id, class name, or tag
+    name, but they are generally faster and, for getElementsBy..., return
+    a live collection — useful when you want a collection that
+    automatically reflects DOM changes.
+
+
+Q4. What is event delegation, and why is it useful when working with
+    dynamically added DOM elements?
+
+    ANSWER:
+    Event delegation means attaching a single event listener to a common
+    parent element instead of individual listeners on each child. Because
+    events bubble up through the DOM, the parent's listener can inspect
+    event.target to determine which child triggered it. This is useful
+    because elements added to the DOM later (after the listener was set
+    up) are still covered — you don't need to re-attach listeners every
+    time new elements are created.
+
+
+Q5. What is the difference between reflow and repaint, and why does
+    excessive DOM manipulation hurt performance?
+
+    ANSWER:
+    Reflow (layout) is when the browser recalculates the positions and
+    dimensions of elements. Repaint is when the browser redraws pixels
+    without changing layout (e.g. a color change). Reflow is more
+    expensive than repaint. Frequent, unbatched DOM reads/writes
+    (especially interleaved) can trigger repeated reflows, causing
+    layout thrashing and janky performance. Batching DOM updates, using
+    document fragments, or minimizing layout-triggering reads (like
+    offsetHeight) in loops helps avoid this.
+
+
+Q6. What is a DocumentFragment, and why would you use one when inserting
+    many elements at once?
+
+    ANSWER:
+    A DocumentFragment is a lightweight, minimal DOM node that lives
+    outside the main document tree. You can build a subtree of elements
+    inside it and then append the whole fragment to the DOM in a single
+    operation. This avoids triggering a reflow/repaint for every
+    individual element insertion — only one reflow happens when the
+    fragment itself is appended, which is much faster for bulk inserts.
+
+
+Q7. What's the difference between node.remove() and
+    node.parentNode.removeChild(node)?
+
+    ANSWER:
+    They accomplish the same result. remove() is a newer, more concise
+    method that can be called directly on the node. removeChild() is the
+    older approach and must be called on the parent, requiring you to
+    first access parentNode. remove() isn't supported in very old browsers
+    (e.g. IE), so removeChild() is sometimes used for wider compatibility.
+
+
+Q8. How would you check if an element exists in the DOM before trying to
+    manipulate it, and why does this matter?
+
+    ANSWER:
+    Check if the query result is not null before using it:
+    let el = document.querySelector(".maybe-missing");
+    if (el) {
+      el.textContent = "Updated";
+    }
+    This matters because querySelector/getElementById return null when no
+    match is found, and calling a method or property on null throws a
+    TypeError, breaking the rest of the script.
+
+
+Q9. What is the difference between innerText and textContent?
+
+    ANSWER:
+    textContent returns/sets all text within an element regardless of
+    CSS, including text in <script>/<style> tags and hidden elements.
+    innerText is aware of CSS styling — it excludes hidden elements
+    (e.g. display: none) and triggers a reflow because it needs
+    layout information, making it slightly slower than textContent.
+
+
+Q10. How do you create an element, add multiple attributes and a class,
+     and insert it into the page — and how would you do the same thing
+     efficiently for 100 elements?
+
+     ANSWER:
+     Single element:
+     let el = document.createElement("div");
+     el.classList.add("item");
+     el.setAttribute("data-id", "42");
+     document.body.appendChild(el);
+
+     For many elements, avoid appending one at a time (each append can
+     trigger a reflow). Instead, build them inside a DocumentFragment and
+     append the fragment once:
+     let fragment = document.createDocumentFragment();
+     for (let i = 0; i < 100; i++) {
+       let el = document.createElement("div");
+       el.textContent = `Item ${i}`;
+       fragment.appendChild(el);
+     }
+     document.body.appendChild(fragment);
+
+
+Q11. What security risk does innerHTML introduce, and how do you avoid it?
+
+     ANSWER:
+     Setting innerHTML with untrusted/user-generated input can lead to
+     Cross-Site Scripting (XSS), since injected <script> tags or event
+     handler attributes can execute in the user's browser. To avoid it:
+     use textContent for plain text, sanitize HTML input with a trusted
+     library before inserting it, or construct elements with
+     createElement/setAttribute instead of raw HTML strings.
+
+
+Q12. What happens if you call classList.toggle("active", true) versus
+     classList.toggle("active")?
+
+     ANSWER:
+     classList.toggle("active") flips the class — adds it if absent,
+     removes it if present. Passing a second boolean argument forces the
+     state: toggle("active", true) always adds the class (never removes
+     it), and toggle("active", false) always removes it (never adds it).
+     This is useful when syncing a class to some other boolean condition.
+
+
+Q13. Is the DOM part of JavaScript itself? Explain your answer.
+
+     ANSWER:
+     No. The DOM is a browser-provided Web API, not a part of the core
+     JavaScript language (ECMAScript). JavaScript is a general-purpose
+     language that can run in many environments (browsers, Node.js,
+     etc.), and only browser environments expose the `document` object
+     and DOM APIs. Node.js, for example, has no built-in DOM.
 
 
 ================================================================================

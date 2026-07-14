@@ -1,5 +1,2 @@
-let i = 1;
-while(i<=10){
-    console.log(i);
-    i++;
-}
+let heading = document.getElementById("main-1");
+heading.style.color = "red";
