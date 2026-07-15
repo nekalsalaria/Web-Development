@@ -2301,50 +2301,6 @@ EXAMPLE:
 
 
 ================================================================================
-TOPIC 10.2 — Event Object
-------------------------------------------------------------
-EXAMPLE:
-  btn.addEventListener("click", function(event) {
-    console.log(event.type);       // "click"
-    console.log(event.target);     // element clicked
-    console.log(event.target.id);  // its ID
-
-    event.preventDefault();    // prevent default (form submit, link)
-    event.stopPropagation();   // stop bubbling up to parents
-  });
-
-  // Keyboard events
-  document.addEventListener("keydown", (e) => {
-    console.log("Key:", e.key);
-    if (e.key === "Enter") { /* do something */ }
-  });
-
-
-================================================================================
-TOPIC 10.3 — Event Bubbling & Delegation
-------------------------------------------------------------
-THEORY:
-  Event Bubbling: when event fires on element, it travels UP
-  through parent elements.
-
-  Event Delegation: attach ONE listener to parent, handle
-  events from all children using event.target.
-
-EXAMPLE:
-  let list = document.querySelector("#list");
-
-  list.addEventListener("click", function(e) {
-    if (e.target.tagName === "LI") {
-      console.log("Clicked:", e.target.textContent);
-      e.target.classList.toggle("selected");
-    }
-  });
-
-  // Handles ALL <li> clicks — even dynamically added ones!
-  // Much more efficient than adding listener to each <li>
-
-
-================================================================================
 CHAPTER 11: ES6+ MODERN JAVASCRIPT
 ================================================================================
 
