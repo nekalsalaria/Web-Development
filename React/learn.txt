@@ -35,27 +35,24 @@ Real Life Example:
 
 
 ================================================================================
-TOPIC 1.2 — Setting Up React (Create React App)
+TOPIC 1.2 — Setting Up React (Create React App using Vite)
 ------------------------------------------------------------
 THEORY:
   To start a React project, we use "Create React App" (CRA) — a tool that
   sets up everything automatically (Webpack, Babel, etc.).
 
   Prerequisites:
-  - Node.js installed (https://nodejs.org)
+  - Node.js installed (https://nodejs.org) to check if nodejs is install in your system or not go to terminal and type (node -v)
   - npm (comes with Node.js)
 
   Commands to create and run a React app:
 
 EXAMPLE:
-  Step 1: Install Create React App globally (one time only)
-  > npx create-react-app my-app
+  Step 1:  > npm create vite@latest
 
-  Step 2: Move into the project folder
-  > cd my-app
+  Step 2:  > cd my-app
 
-  Step 3: Start the development server
-  > npm start
+  Step 3:  > npm run dev
 
   Your app will open at: http://localhost:3000
 
@@ -65,8 +62,8 @@ EXAMPLE:
   │   └── index.html       ← The single HTML file
   ├── src/
   │   ├── App.js           ← Main component
-  │   ├── App.css          ← Styles
-  │   └── index.js         ← Entry point
+  │   ├── index.css          ← Styles
+  │   └── main.js         ← Entry point
   ├── package.json         ← Dependencies list
   └── node_modules/        ← All installed packages
 
