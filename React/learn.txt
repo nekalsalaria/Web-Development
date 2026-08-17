@@ -221,6 +221,342 @@ DEFAULT PROPS:
 
 
 ================================================================================
+                    REACT PRACTICE QUESTIONS
+              Before Starting STATE & HOOKS
+================================================================================
+
+INSTRUCTIONS:
+- Solve all 10 questions.
+- Use only the concepts taught so far:
+  JSX, Functional Components, Props, Props Destructuring,
+  Default Props and Component Composition.
+- Do NOT use State or Hooks.
+- Do NOT use useState, useEffect, useRef, useContext, etc.
+================================================================================
+
+
+QUESTION 1 — WELCOME COMPONENT
+--------------------------------------------------------------------------------
+Create a "Welcome" component that accepts a "name" prop and displays:
+
+Welcome, Rahul!
+
+Render the component with at least 3 different names.
+
+Example:
+<Welcome name="Rahul" />
+<Welcome name="Priya" />
+<Welcome name="Aman" />
+
+
+================================================================================
+QUESTION 2 — STUDENT PROFILE CARD
+--------------------------------------------------------------------------------
+Create a reusable "StudentCard" component that accepts:
+
+- name
+- age
+- course
+- city
+
+Display all the information inside a card.
+
+Render at least 3 different students.
+
+Example Output:
+
+Name: Rahul
+Age: 21
+Course: B.Tech CSE
+City: Jaipur
+
+CONDITION:
+Use props destructuring.
+
+
+================================================================================
+QUESTION 3 — PRODUCT CARD
+--------------------------------------------------------------------------------
+Create a reusable "ProductCard" component with the following props:
+
+- name
+- price
+- category
+- image
+
+Display all product information.
+
+Render at least 4 different products using the same component.
+
+Example:
+
+<ProductCard
+    name="iPhone 17"
+    price={79999}
+    category="Mobile"
+    image="image-url"
+/>
+
+CONDITION:
+Use props destructuring.
+
+
+================================================================================
+QUESTION 4 — EMPLOYEE CARD
+--------------------------------------------------------------------------------
+Create an "EmployeeCard" component that accepts:
+
+- name
+- designation
+- salary
+- department
+
+Display the employee information.
+
+Example Output:
+
+Name: Aman
+Designation: Software Engineer
+Salary: ₹60,000
+Department: Development
+
+Render at least 3 different employees.
+
+
+================================================================================
+QUESTION 5 — REUSABLE BUTTON COMPONENT
+--------------------------------------------------------------------------------
+Create a reusable "Button" component that accepts:
+
+- text
+- type
+- disabled
+
+Use the component like:
+
+<Button text="Login" type="primary" disabled={false} />
+
+<Button text="Delete" type="danger" disabled={false} />
+
+<Button text="Submit" type="success" disabled={true} />
+
+Display all three buttons.
+
+GOAL:
+Understand how different types of values can be passed through props.
+
+
+================================================================================
+QUESTION 6 — USER PROFILE WITH CHILD COMPONENTS
+--------------------------------------------------------------------------------
+Create the following component structure:
+
+App
+ |
+ └── UserProfile
+       |
+       ├── ProfileHeader
+       |
+       └── ProfileDetails
+
+
+App should contain the following user information:
+
+- name
+- age
+- email
+- city
+- profession
+
+Pass the information from:
+
+App → UserProfile → ProfileHeader / ProfileDetails
+
+Display the complete user profile.
+
+GOAL:
+Practice passing props from parent to child components.
+
+
+================================================================================
+QUESTION 7 — COURSE CARD WITH DEFAULT PROPS
+--------------------------------------------------------------------------------
+Create a "CourseCard" component with the following props:
+
+- title
+- instructor
+- duration
+- level
+- language
+
+If the "language" prop is not provided, display:
+
+Language: English
+
+Create at least 3 courses.
+
+For one course, do NOT pass the language prop.
+
+Example:
+
+<CourseCard
+    title="React Development"
+    instructor="Rahul Sharma"
+    duration="40 Hours"
+    level="Intermediate"
+/>
+
+CONDITION:
+Use default props.
+
+
+================================================================================
+QUESTION 8 — TEAM MEMBERS
+--------------------------------------------------------------------------------
+Create a reusable "TeamMember" component.
+
+Props:
+
+- name
+- role
+- experience
+- location
+- isTeamLead
+
+Example Output:
+
+Name: Rahul
+Role: Frontend Developer
+Experience: 2 Years
+Location: Jaipur
+Team Lead: Yes
+
+If isTeamLead is false, display:
+
+Team Lead: No
+
+Render at least 5 team members.
+
+CONDITION:
+Do NOT use State or Hooks.
+
+
+================================================================================
+QUESTION 9 — MINI E-COMMERCE PRODUCT PAGE
+--------------------------------------------------------------------------------
+Build a small E-Commerce Product Page using multiple components.
+
+Component Structure:
+
+App
+ |
+ ├── Header
+ |
+ ├── ProductDetails
+ |      |
+ |      ├── ProductImage
+ |      |
+ |      └── ProductInfo
+ |
+ └── Footer
+
+
+Product should contain:
+
+- name
+- price
+- brand
+- category
+- description
+- rating
+- image
+
+Pass the product information through props.
+
+Create a clean and reusable product page.
+
+FOCUS:
+- Functional Components
+- Props
+- Props Destructuring
+- Component Composition
+
+
+================================================================================
+QUESTION 10 — MINI STUDENT MANAGEMENT UI
+================================================================================
+Build a small Student Management UI.
+
+Component Structure:
+
+App
+ |
+ ├── Header
+ |
+ ├── StudentList
+ |      |
+ |      ├── StudentCard
+ |      ├── StudentCard
+ |      └── StudentCard
+ |
+ └── Footer
+
+
+Each student should have:
+
+- Name
+- Roll Number
+- Course
+- Age
+- City
+- Percentage
+
+Example Output:
+
+--------------------------------
+       STUDENT MANAGEMENT SYSTEM
+--------------------------------
+
+Name: Rahul
+Roll No: 101
+Course: B.Tech CSE
+Age: 21
+City: Jaipur
+Percentage: 84%
+
+Create at least 5 students.
+
+The data should flow like:
+
+App
+ ↓
+StudentList
+ ↓
+StudentCard
+
+
+RESTRICTIONS:
+Do NOT use:
+
+❌ useState
+❌ useEffect
+❌ useRef
+❌ useContext
+❌ Redux
+❌ API Calls
+❌ Event Handling
+
+Use ONLY:
+
+✅ JSX
+✅ Functional Components
+✅ Props
+✅ Props Destructuring
+✅ Default Props
+✅ Component Composition
+
+
+================================================================================
 CHAPTER 3: STATE & HOOKS
 ================================================================================
 
