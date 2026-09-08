@@ -1199,8 +1199,7 @@ useRef:
   - Does NOT update UI automatically
   - Does NOT cause Re-render
 
-Syntax:
-  
+Syntax:  
   const myRef = useRef(initialValue);
 
 React returns:
@@ -1440,6 +1439,29 @@ Ans:
 3. Timer IDs
 4. Mutable Variables
 
+useRef Hook — PRACTICE QUESTIONS
+
+Q1. Ek "Character Counter" app banao jisme user text box mein type kare aur "Show Count" button click karne par console mein total characters ki ginti print ho — lekin UI par koi number show na ho (useRef use karke).
+
+Q2. useRef ka use karke ek "Auto Focus" form banao jisme page load hote hi input field automatically focus ho jaye (useEffect + useRef combo).
+
+Q3. Ek "Click Counter" banao jisme button click karne par count badhe, lekin screen par count show na ho — sirf console.log() se check karo ki useRef re-render trigger nahi karta.
+
+Q4. Ek "Stopwatch" app banao jisme Start aur Stop button ho, aur timer ka ID useRef mein store ho (setInterval + clearInterval).
+
+Q5. Do input fields banao (Name aur Email). Button click karne par dono fields ka current value console mein print karo useRef ke through (without controlled state).
+
+Q6. "Previous Value Tracker" banao — jab bhi useState wali value change ho, uski purani (previous) value ko useRef mein store karke show karo ki pehle kya tha aur ab kya hai.
+
+Q7. Ek video player component banao jisme useRef se <video> tag ko access karke "Play" aur "Pause" button se control karo.
+
+Q8. Explain karo: agar hum countRef.current++ karte hain but UI update nahi hoti, to phir hume us value ko screen par kaise show karayenge? (Hint: useState ke saath combine karna padega)
+
+Q9. Ek "Scroll to Top" button banao jisme useRef se ek div ko reference diya gaya ho aur button click par us div tak scroll ho jaye (scrollIntoView method use karo).
+
+Q10. True/False batao aur reason do: "useRef component ke re-render hone par bhi apni value ko reset nahi karta, jabki normal variable (let x = 0) reset ho jaata hai."
+
+
 
 ================================================================================
 TOPIC 3.4 — useContext Hook
@@ -1588,19 +1610,13 @@ function ThemedButton() {
   );
 }
 
-Explanation:
-
-useContext reads data directly from the nearest Provider.
 
 
 ================================================================================
 COMPLETE EXAMPLE
 ================================================================================
 
-import {
-  createContext,
-  useContext
-} from "react";
+import {createContext,useContext} from "react";
 
 const ThemeContext = createContext("light");
 
@@ -1713,6 +1729,28 @@ useContext:
   Shares data globally across components and avoids prop drilling.
 
 
+useContext Hook — PRACTICE QUESTIONS
+
+Q1. Ek "Dark/Light Mode Toggle" app banao using Context API, jisme ThemeContext create karo aur pure app ka background color context value ke hisaab se change ho.
+
+Q2. Ek "User Authentication Context" banao jisme UserContext store kare ki user login hai ya nahi, aur Navbar component usko useContext se read karke "Login" ya "Logout" button dikhaye.
+
+Q3. Prop Drilling ka example khud se code likh kar dikhao (App → Parent → Child → GrandChild), phir usi example ko useContext use karke fix karo.
+
+Q4. Ek "Language Selector" app banao (English/Hindi) using Context API, jisme multiple components context se selected language read karke apna text change karein.
+
+Q5. Explain karo ki Provider aur Consumer mein kya difference hai, aur ek chhota code example likho jisme dono ka use ho.
+
+Q6. Ek "Shopping Cart Context" banao jisme cart items ka data globally store ho, aur alag-alag components (Navbar, ProductPage) us cart count ko useContext se access kar sakein.
+
+Q7. Kya hota hai agar hum useContext() ko Provider ke bahar wale component mein use karein? Code likh kar test karo aur result explain karo.
+
+Q8. Multiple Contexts ka example banao — ek ThemeContext aur ek UserContext ko ek hi component mein use karke dikhao (nested providers ke saath).
+
+Q9. Ek "Settings Panel" banao jisme font-size context ke through globally control ho — Provider mein value change karte hi sabhi child components ka text size update ho jaye.
+
+Q10. Compare karo: useContext vs Props ke through data pass karna. Kis situation mein Context use karna better hai aur kab simple props hi kaafi hain? (3-4 points likho)
+
 ================================================================================
 CHAPTER 4: EVENTS & FORMS
 ================================================================================
@@ -1749,6 +1787,28 @@ COMMON EVENTS:
   onMouseOver  → mouse hover
   onFocus      → element focused
   onBlur       → element lost focus
+
+Handling Events — PRACTICE QUESTIONS
+
+Q1. Ek button banao jisme onClick event use karke ek alert box show ho jisme "Button Clicked!" likha ho.
+
+Q2. Ek input field banao jisme onChange event use karke jo bhi user type kare wo real-time mein console mein print ho.
+
+Q3. Ek login form banao (username + password) jisme onSubmit event use karke form submit hone par page reload na ho (e.preventDefault() use karke) aur values console mein print ho.
+
+Q4. Ek input field banao jisme onKeyDown event use karke pata chale ki user ne "Enter" key press ki hai ya nahi, aur agar Enter dabaya to console mein "Enter pressed!" print ho.
+
+Q5. Ek div banao jisme onMouseOver aur onMouseOut dono events use karke background color change ho — hover karte waqt ek color aur hover hatane par dusra color.
+
+Q6. Do input fields banao jisme onFocus aur onBlur events use karke pata chale ki konsa field currently focus mein hai aur konsa nahi (border color change karke dikhao).
+
+Q7. Explain karo: React mein event handler ko "function reference" ke roop mein kyun pass karte hain, na ki "function call" ke roop mein? Example: onClick={handleClick} vs onClick={handleClick()} — dono mein kya difference hoga?
+
+Q8. Ek "Image Gallery" banao jisme onClick event ke through jab bhi kisi thumbnail image par click ho, uska bada version upar show ho jaye.
+
+Q9. Event object (e) ka use karke ek code likho jisme e.target.value aur e.target.tagName ka use ho — dono ka kaam explain bhi karo.
+
+Q10. Ek "Multi-Event Button" banao jisme single button par onClick, onMouseOver, aur onMouseOut teeno events ek saath handle ho, aur har event apna alag console message print kare.
 
 
 ================================================================================
