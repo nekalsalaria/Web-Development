@@ -1,10 +1,16 @@
-const App = () => {
-  return (
-    <div>
-    <h1>Hello World</h1>
-    <h3>Hello, React!</h3>
-    </div>
-  )
-}
-
-export default App
+import Card from './Card.jsx';  
+function App() {
+    return (
+      <div>
+        <Card title="Student Info">
+          <p>Name: Arjun</p>
+          <p>Roll No: 101</p>
+        </Card>
+        <Card title="Course">
+          <p>React JS</p>
+          <button>Enroll</button>
+        </Card>
+      </div>
+    );
+  }
+export default App;

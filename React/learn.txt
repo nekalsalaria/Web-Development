@@ -1794,21 +1794,29 @@ Q1. Ek button banao jisme onClick event use karke ek alert box show ho jisme "Bu
 
 Q2. Ek input field banao jisme onChange event use karke jo bhi user type kare wo real-time mein console mein print ho.
 
-Q3. Ek login form banao (username + password) jisme onSubmit event use karke form submit hone par page reload na ho (e.preventDefault() use karke) aur values console mein print ho.
+Q3. Ek login form banao (username + password) jisme onSubmit event 
+use karke form submit hone par page reload na ho (e.preventDefault() use karke) aur values console mein print ho.
 
-Q4. Ek input field banao jisme onKeyDown event use karke pata chale ki user ne "Enter" key press ki hai ya nahi, aur agar Enter dabaya to console mein "Enter pressed!" print ho.
+Q4. Ek input field banao jisme onKeyDown event use karke pata chale ki user ne "Enter" key press ki hai ya nahi,
+ aur agar Enter dabaya to console mein "Enter pressed!" print ho.
 
-Q5. Ek div banao jisme onMouseOver aur onMouseOut dono events use karke background color change ho — hover karte waqt ek color aur hover hatane par dusra color.
+Q5. Ek div banao jisme onMouseOver aur onMouseOut dono events use karke background 
+color change ho — hover karte waqt ek color aur hover hatane par dusra color.
 
-Q6. Do input fields banao jisme onFocus aur onBlur events use karke pata chale ki konsa field currently focus mein hai aur konsa nahi (border color change karke dikhao).
+Q6. Do input fields banao jisme onFocus aur onBlur events use karke pata chale ki konsa
+ field currently focus mein hai aur konsa nahi (border color change karke dikhao).
 
-Q7. Explain karo: React mein event handler ko "function reference" ke roop mein kyun pass karte hain, na ki "function call" ke roop mein? Example: onClick={handleClick} vs onClick={handleClick()} — dono mein kya difference hoga?
+Q7. Explain karo: React mein event handler ko "function reference" ke roop mein kyun pass karte hain,
+ na ki "function call" ke roop mein? Example: onClick={handleClick} vs onClick={handleClick()} — dono mein kya difference hoga?
 
-Q8. Ek "Image Gallery" banao jisme onClick event ke through jab bhi kisi thumbnail image par click ho, uska bada version upar show ho jaye.
+Q8. Ek "Image Gallery" banao jisme onClick event ke through jab bhi kisi thumbnail image par click ho,
+ uska bada version upar show ho jaye.
 
-Q9. Event object (e) ka use karke ek code likho jisme e.target.value aur e.target.tagName ka use ho — dono ka kaam explain bhi karo.
+Q9. Event object (e) ka use karke ek code likho jisme e.target.value aur e.target.tagName ka use ho —
+ dono ka kaam explain bhi karo.
 
-Q10. Ek "Multi-Event Button" banao jisme single button par onClick, onMouseOver, aur onMouseOut teeno events ek saath handle ho, aur har event apna alag console message print kare.
+Q10. Ek "Multi-Event Button" banao jisme single button par onClick, onMouseOver,
+ aur onMouseOut teeno events ek saath handle ho, aur har event apna alag console message print kare.
 
 
 ================================================================================

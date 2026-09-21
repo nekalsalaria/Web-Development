@@ -1,9 +1,8 @@
 import { createRoot } from 'react-dom/client'
 import './index.css'
-import RegistrationForm from './Components/RegistrationForm';
-
+import App from './App.jsx'
 createRoot(document.getElementById('root')).render(
   <>
-  <RegistrationForm/>
+  <App/>
   </>
 )
