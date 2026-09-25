@@ -2096,6 +2096,173 @@ PROGRAMMATIC NAVIGATION:
   }
 
 ================================================================================
+PRACTICE QUESTIONS — REACT ROUTER
+================================================================================
+
+Q1. Basic Routing
+Create a React application with the following pages:
+- Home
+- About
+- Contact
+
+Use React Router DOM to navigate between all three pages without reloading
+the browser.
+
+-------------------------------------------------------------------------------
+
+Q2. Navigation Bar
+Create a Navbar using <Link> with the following links:
+- Home
+- Products
+- Services
+- About
+- Contact
+
+Create a separate Route for each page and display the page name as an <h1>.
+
+-------------------------------------------------------------------------------
+
+Q3. 404 Page
+Create routes for:
+- /
+- /about
+- /contact
+
+If the user enters any invalid URL such as /hello or /xyz, display:
+
+"404 - Page Not Found"
+
+Use the wildcard route (*).
+
+-------------------------------------------------------------------------------
+
+Q4. Dynamic Route Parameters
+Create a Student List containing:
+
+1. Rahul
+2. Aman
+3. Priya
+4. Neha
+
+Create a dynamic route:
+
+/student/:id
+
+When the user visits:
+- /student/101
+- /student/102
+- /student/103
+
+Use useParams() to display the Student ID.
+
+Example:
+Student ID: 101
+
+-------------------------------------------------------------------------------
+
+Q5. Product Details
+Create a Products page containing at least 5 products.
+
+Each product should have a "View Details" button.
+
+When the user clicks the button, navigate to:
+
+/product/:id
+
+Example:
+Clicking Product 5 should navigate to:
+
+/product/5
+
+Use useParams() to display the product ID.
+
+-------------------------------------------------------------------------------
+
+Q6. NavLink Active State
+Create a navigation bar using NavLink instead of Link.
+
+Create these routes:
+- Home
+- About
+- Courses
+- Contact
+
+When a user is currently on a page, its navigation link should have a different
+CSS style.
+
+Example:
+Active link → background-color: black; color: white;
+Inactive link → normal styling.
+
+-------------------------------------------------------------------------------
+
+Q7. Programmatic Navigation
+Create a Login page with:
+- Email input
+- Password input
+- Login button
+
+When the user clicks Login, use useNavigate() to navigate to:
+
+/dashboard
+
+The Dashboard page should display:
+
+"Welcome to Dashboard"
+
+-------------------------------------------------------------------------------
+
+Q8. Login → Dashboard → Logout
+Create the following pages:
+- Login
+- Dashboard
+- Home
+
+Requirements:
+1. Login button should navigate to /dashboard.
+2. Dashboard should contain a Logout button.
+3. Clicking Logout should navigate back to /.
+4. Use useNavigate() for Login and Logout navigation.
+5. Do not use <a href=""> for navigation.
+
+-------------------------------------------------------------------------------
+
+Q9. E-Commerce Routing
+Build routing for a simple e-commerce website.
+
+Create the following routes:
+
+/                    → Home
+/products             → Products
+/products/:id         → Product Details
+/cart                 → Cart
+/login                → Login
+
+On the Products page, display multiple products with a "View Product"
+button.
+
+Clicking the button should navigate to:
+
+/products/101
+
+Use useParams() to display the selected product ID.
+
+-------------------------------------------------------------------------------
+
+Q10. Mini React Router Project
+Create a Student Management application using React Router.
+
+Required pages:
+
+/                       → Home
+/students               → Student List
+/student/:id            → Student Details
+/add-student             → Add Student
+/about                  → About
+/*                      → 404 Page
+
+
+================================================================================
 CHAPTER 8: ADVANCED CONCEPTS
 ================================================================================
 
